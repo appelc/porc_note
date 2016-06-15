@@ -20,10 +20,15 @@ pf$posix <- as.POSIXct(strptime(pf$date, "%m/%d/%Y %H:%M:%S"), tz="America/Los_A
 
 ## keep only credibility 2 (reliable description) or 3 (photos/video)
 pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
-View(pf)
 
 pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
                                data=data.frame(pf),
                                proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 plot(pf.spdf)
-writeOGR(pf.spdf, dsn = '.', layer='porcufinder_061516', driver='ESRI Shapefile')
+
+## keep only those in California
+CA <- readOGR(dsn='.', layer='CA_boundary', verbose=TRUE) ## import CA boundary shapefile
+proj4string(CA) <- proj4string(pf.spdf)
+pf.ca.spdf <- pf.spdf[CA,]
+
+writeOGR(pf.ca.spdf, dsn = '.', layer='pf_ca_061516', driver='ESRI Shapefile')
