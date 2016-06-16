@@ -1,0 +1,23 @@
+UID,Location_type,Location_year,Location_county,Location_city,Location_1,FS_UNIT_ID,Location_2,Accuracy code,coordUncertaintyM,alt,Source_name,Catalog number,Observer name,Observer title,Observer contact,Sighting_ type,Source_record_number,Website,UTM_E,UTM_N,UTM_zone,Datum,Latitude_N,Longitude_W,Elevation,Documentation,Observer_confidence,Date_entered
+ERDO4,Roadkill,1995,,,,,,2,,,CROS,,Douglas Long,Observer,na,Personal observation,12412,,,,,,38.324824,-122.847748,,,100% certain,6-Nov-14
+ERDO5,Roadkill,1998,,,,,,2,,,CROS,,Edward Whisler,Observer,na,Personal observation,3008,,,,,,39.191768,-121.491913,,,100% certain,6-Nov-14
+ERDO6,Roadkill,2010,,,,,,2,,,CROS,,Peter Maurer,Observer,na,Personal observation,5197,,,,,,41.676923,-122.625087,,,Somewhat confident,6-Nov-14
+ERDO7,Roadkill,2010,,,,,,2,,,CROS,,Peter Maurer,Observer,na,Personal observation,6727,,,,,,38.73119,-119.954395,,,Somewhat confident,6-Nov-14
+ERDO8,Roadkill,2010,,,,,,2,,,CROS,,Peter Maurer,Observer,na,Personal observation,7349,,,,,,38.820251,-120.074344,,,Somewhat confident,6-Nov-14
+ERDO9,Roadkill,2011,,,,,,2,,,CROS,,Fraser Shilling,Observer,na,Personal observation,13968,,,,,,38.575246,-120.99726,,,100% certain,6-Nov-14
+ERDO10,Roadkill,2011,,,,,,2,,,CROS,,Bill Storm,Observer,na,Personal observation,14971,,,,,,38.721389,-119.95381,,,100% certain,6-Nov-14
+ERDO11,Roadkill,2011,,,,,,2,,,CROS,,Doug Weidemann,Observer,na,Personal observation,20120,,,,,,38.939379,-122.760372,,,100% certain,6-Nov-14
+ERDO12,Roadkill,2011,,,,,,2,,,CROS,,S Hugdahl,Observer,na,Personal observation,15561,,,,,,39.330845,-121.353951,,,100% certain,6-Nov-14
+ERDO13,Roadkill,2011,,,,,,2,,,CROS,,J. Scott Yaeger,Observer,na,Personal observation,16865,,,,,,41.497843,-122.464471,,,100% certain,6-Nov-14
+ERDO14,Roadkill,2012,,,,,,2,,,CROS,,Peter Maurer,Observer,na,Personal observation,19548,,,,,,38.817273,-120.034239,,,100% certain,6-Nov-14
+ERDO15,Roadkill,2012,,,,,,2,,,CROS,,J. Scott Yaeger,Observer,na,Personal observation,19606,,,,,,41.71039,-122.579141,,,100% certain,6-Nov-14
+ERDO16,Roadkill,2012,,,,,,2,,,CROS,,Peter Stine,Observer,na,Personal observation,26631,,,,,,39.337019,-120.352435,,,Somewhat confident,6-Nov-14
+ERDO19,Roadkill,2013,,,,,,2,,,CROS,,Peter Maurer,Observer,na,Personal observation,40709,,,,,,38.79511,-120.148287,,,100% certain,6-Nov-14
+ERDO20,Roadkill,2013,,,,,,2,,,CROS,,Sheli Wingo,Observer,na,Personal observation,38583,,,,,,39.963181,-122.070323,,,100% certain,6-Nov-14
+ERDO21,Roadkill,2013,,,,,,2,,,CROS,,John Cleckler,Observer,na,Personal observation,37999,,,,,,38.824284,-120.044233,,,Somewhat confident,6-Nov-14
+ERDO22,Roadkill,2013,,,,,,2,,,CROS,,Terri Weist,Observer,na,Personal observation,38025,,,,,,38.812058,-120.014589,,,100% certain,6-Nov-14
+ERDO23,Roadkill,2013,,,,,,2,,,CROS,,Cate Scott,Observer,na,Personal observation,38384,,,,,,41.47804,-122.348385,,,100% certain,6-Nov-14
+ERDO24,Roadkill,2013,,,,,,2,,,CROS,,Anonymous,Observer,na,Personal observation,39460,,,,,,41.726102,-122.503856,,,100% certain,6-Nov-14
+ERDO25,Roadkill,2013,,,,,,2,,,CROS,,Richard Perloff,Observer,na,Personal observation,39126,,,,,,37.627471,-119.005065,,,100% certain,6-Nov-14
+ERDO26,Roadkill,2014,,,,,,2,,,CROS,,Michael Taylor,Observer,na,Personal observation,41874,,,,,,41.726733,-122.554014,,,100% certain,6-Nov-14
+ERDO27,Roadkill,2014,,,,,,2,,,CROS,,Travis Espinoza,Observer,na,Personal observation,43488,,,,,,37.912467,-119.257879,,,Somewhat confident,6-Nov-14
