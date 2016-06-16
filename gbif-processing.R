@@ -22,7 +22,11 @@ points(norcal.occur)
 gbif.pts <- norcal.occur@data
 gbif.pts <- subset(gbif.pts)
 gbif.pts$institutionCode <- factor(gbif.pts$institutionCode)
+gbif.spdf <- SpatialPointsDataFrame(data.frame(gbif.pts$lon, gbif.pts$lat),
+                                    data=gbif.pts)
+gbif.spdf@proj4string <- aoi@proj4string
 unique(gbif.pts$institutionCode)
 table(gbif.pts$institutionCode)
 
+writeOGR(gbif.spdf, dsn = '.', layer = 'Shapefiles/GBIF_061616', driver = 'ESRI Shapefile')
 write.csv(gbif.pts, "./Spreadsheets/gbif-subset-16jun2016.csv")
