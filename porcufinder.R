@@ -139,11 +139,19 @@ erdo <- erdo[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer'
                 'documentation', 'obs_confidence', 'date_entered', 'source_comments')]
 
 ## will need to clip to Northern CA but for now:
-erdo <- subset(erdo, utm_zone != '11N')
+#erdo <- subset(erdo, utm_zone != '11N')
+
+# Load Northern CA AOI
+aoi <- readOGR(dsn="./Shapefiles", layer="ca_AOI2")
 
 erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
                                     data=data.frame(erdo),
                                     proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+
+erdo.spdf$name <- over(erdo.spdf, aoi)$NAME
+
+erdo.spdf <- subset(erdo.spdf, name=="California")
+
 plot(erdo.spdf)
 
 writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_061616', driver = 'ESRI Shapefile')
