@@ -89,7 +89,7 @@ plot(misc.spdf)
 writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/MISC_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'MISC_cleaned_061616.csv')
 
-#######################################################3
+#######################################################
 
 ## And Ric's database
 
@@ -147,4 +147,40 @@ erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
 plot(erdo.spdf)
 
 writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_061616', driver = 'ESRI Shapefile')
-write.csv(misc, 'ERDO_cleaned_061616.csv')
+write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
+
+#######################################################
+
+## CDFW records from Richard Callas / Kathryn Purcell
+
+cdfw <- readOGR(dsn = 'Shapefiles', layer='CDFW_KP', verbose=TRUE)
+plot(cdfw)
+
+head(cdfw@data)
+colnames(cdfw@data) <- c('id', 'date', 'observer', 'species', 'tot_obs', 'info', 'type1', 'type2')
+cdfw@data$date <- as.Date(cdfw@data$date, '%m/%d/%Y')
+cdfw@data$source <- rep('CDFW', nrow(cdfw@data))
+cdfw@data$id <- paste('CDFW', 1:nrow(cdfw), sep = '')
+
+cdfw@data$type <- rep(NA, nrow(cdfw@data))
+cdfw@data$type[cdfw@data$type1 == 'Alive'] <- 'sighting'
+cdfw@data$type[cdfw@data$type1 == 'Dead'] <- 'carcass'
+cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Road Kill'] <- 'roadkill'
+
+## some of these are camera or track/sign...
+cdfw@data[c(25:29, 43, 56), 10] <- 'camera'
+cdfw@data[c(78:80, 93, 95, 97, 101), 10] <- 'other_sign'
+
+## decade
+cdfw@data$decade <- rep(NA, nrow(cdfw@data))
+cdfw@data$decade[cdfw@data$date > '1990-01-01' & cdfw@data$date < '2000-01-01'] <- '1990s'
+cdfw@data$decade[cdfw@data$date > '2000-01-01' & cdfw@data$date < '2010-01-01'] <- '2000s'
+cdfw@data$decade[cdfw@data$date > '2010-01-01' & cdfw@data$date < '2020-01-01'] <- '2010s'
+
+## reorder
+cdfw@data <- cdfw@data[,c('source', 'id', 'type', 'date', 'decade', 'observer', 'info',
+                          'species', 'tot_obs', 'type1', 'type2')]
+
+writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
+write.csv(cdfw, 'Spreadsheets/CDFW_cleaned_061616.csv')
+
