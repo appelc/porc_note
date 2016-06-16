@@ -6,21 +6,37 @@ library(rgdal)
 
 gs_ls()
 porcufinder <- gs_title("Porcupines (Responses)")
-pf <- data.frame(gs_read(ss=porcufinder, ws="Form Responses", is.na(TRUE), range=cell_cols(1:32)))
-pf <- pf[-(1:3),c(2, 4, 5, 8, 19, 21, 28:32)] ## get rid of test rows & columns I don't need
-colnames(pf) <- c('type_obs', 'date', 'loc', 'habitat', 'info', 'observor', 'prev_sub', 'proj_notes', 
-                  'credibility', 'utm_e', 'utm_n')
+pf <- data.frame(gs_read(ss=porcufinder, ws="Form Responses", is.na(TRUE), range=cell_cols(1:33)))
+pf <- pf[-(1:3),c(2, 4, 5, 8, 19, 21, 28:33)] ## get rid of test rows & columns I don't need
+colnames(pf) <- c('type_obs', 'date', 'location', 'habitat', 'info', 'observor', 'prev_sub', 'proj_notes', 
+                  'credibility', 'utm_e', 'utm_n', 'type')
 
 pf$utm_e <- as.numeric(pf$utm_e)
 pf$utm_n <- as.numeric(pf$utm_n)
 pf$credibility <- as.factor(pf$credibility)
 
-pf$date <- as.character(pf$date)
 pf$date <- as.POSIXct(strptime(pf$date, "%m/%d/%Y %H:%M:%S"), tz="America/Los_Angeles")
+
+## clean up a little bit
+pf$source <- rep('PF', nrow(pf))
+pf$id <- paste('PF', 1:nrow(pf), sep = '')
+
+## add decade
+pf$decade <- rep(NA, nrow(pf))
+pf$decade[pf$date > '1970-01-01' & pf$date < '1980-01-01'] <- '1970s'
+pf$decade[pf$date > '1980-01-01' & pf$date < '1990-01-01'] <- '1980s'
+pf$decade[pf$date > '1990-01-01' & pf$date < '2000-01-01'] <- '1990s'
+pf$decade[pf$date > '2000-01-01' & pf$date < '2010-01-01'] <- '2000s'
+pf$decade[pf$date > '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
+
+## reorder
+pf <- pf[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observor', 'utm_e', 
+            'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility')] 
 
 ## keep only credibility 2 (reliable description) or 3 (photos/video)
 pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
 
+## plot
 pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
                                data=data.frame(pf),
                                proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
@@ -31,26 +47,8 @@ CA <- readOGR(dsn='Shapefiles/Admin', layer='CA_boundary', verbose=TRUE) ## impo
 proj4string(CA) <- proj4string(pf.spdf)
 pf.spdf <- pf.spdf[CA,]
 
-## clean up a little bit
-pf.spdf@data$source <- rep('PF', nrow(pf.spdf))
-pf.spdf@data$id <- paste('PF', 1:nrow(pf.spdf), sep = '')
-pf.spdf@data$type <- rep(NA, nrow(pf.spdf))
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Live Porcupine'] <- 'live'
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Dead Porcupine'] <- 'dead'
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Live Porcupine, Quilled my dog' | pf.spdf@data$type_obs == 'Porcupine Quills in dog' | pf.spdf@data$type_obs == 'Dogs got quills in their faces. I pulled them out.' | pf.spdf@data$type_obs == 'Live Porcupine, Dog quilled by porcupine'] <- 'dog'
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Dying Porcupine'] <- 'live'
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Porcupine Tracks'] <- 'sign'
-pf.spdf@data$type[pf.spdf@data$type_obs == 'History of this decline' | pf.spdf@data$type_obs == 'A story from the past and comment'] <- 'live' ## in these specific cases, UTM reference a live obs. mentioned in the general comments
-pf.spdf@data$type[pf.spdf@data$type_obs == 'Live Porcupine, Dead Porcupine'] <- 'live_dead'
-## reorder
-pf.spdf@data <- pf.spdf@data[,c('source', 'id', 'type', 'date', 'loc', 'observor', 'utm_e', 
-                            'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes',
-                            'credibility')]
-
-## figure out how to add a 'decade' column that automatically figures it out
-
-writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/PF_061616', driver='ESRI Shapefile')
-write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv')
+writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/PF_061616', driver='ESRI Shapefile') 
+write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
 
 #######################################################3
 
@@ -58,7 +56,7 @@ write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv')
 
 gs_ls()
 sheet <- gs_title("Misc porc records") 
-misc <- data.frame(gs_read(ss=sheet, ws='Records', is.na(TRUE), range=cell_cols(1:13)))
+misc <- data.frame(gs_read(ss=sheet, ws='Records', is.na(TRUE), range=cell_cols(1:16)))
 
 misc$utm_e <- as.numeric(misc$utm_e)
 misc$utm_n <- as.numeric(misc$utm_n)
@@ -69,11 +67,84 @@ misc$source[misc$source == 'Flickr'] <- 'FLICKR'
 misc$source[misc$source == 'iNaturalist'] <- 'INAT'
 misc$id[misc$source == 'FLICKR'] <- paste('FLICKR', 1:6, sep = '')
 misc$id[misc$source == 'INAT'] <- paste('INAT', 1:7, sep = '') ## combine these rows?
-misc <- misc[,c('source', 'id', 'type', 'date', 'loc', 'observor', 'utm_e', 'utm_n', 'info',
-                'utm_zone', 'geotagged', 'lat', 'lon', 'link')]
+
+## add decade
+misc$decade <- rep(NA, nrow(misc))
+misc$decade[misc$date > '1990-01-01' & misc$date < '2000-01-01'] <- '1990s'
+misc$decade[misc$date > '2000-01-01' & misc$date < '2010-01-01'] <- '2000s'
+misc$decade[misc$date > '2010-01-01' & misc$date < '2020-01-01'] <- '2010s'
+
+## reorder
+misc <- misc[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observor', 'utm_e', 'utm_n', 'info',
+                'utm_zone', 'geotagged', 'lat', 'lon', 'link', 'proj_notes', 'proj_notes2', 'include')]
+
+## only keep approved / relevant ones
+misc1 <- misc[misc$include == 1,] 
 
 misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
                                   data=data.frame(misc),
                                   proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 plot(misc.spdf)
+
 writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/MISC_061616', driver = 'ESRI Shapefile')
+write.csv(misc, 'MISC_cleaned_061616.csv')
+
+#######################################################3
+
+## And Ric's database
+
+gs_ls()
+sheet2 <- gs_title('ERDO location database RVS 040115') 
+erdo <- data.frame(gs_read(ss=sheet2, ws='Locations', is.na(TRUE), range=cell_cols(1:34)))
+colnames(erdo) <- c('source', 'id', 'type1', 'year', 'month', 'date', 'county', 'city', 
+                    'location', 'fs_unit_id', 'location2', 'accuracy', 'coord_uncertainty', 
+                    'alt', 'source2', 'catalog_no', 'observer', 'observer_title', 'contact',
+                    'type2', 'record_no', 'website', 'utm_e', 'utm_n', 'utm_zone', 'datum',
+                    'lat_n', 'lon_w', 'elevation', 'documentation', 'obs_confidence', 
+                    'date_entered', 'info', 'source_comments')
+  
+erdo$utm_e <- as.numeric(erdo$utm_e)
+erdo$utm_n <- as.numeric(erdo$utm_n)
+erdo$date <- as.Date(erdo$date, '%m/%d/%Y')
+
+## clean up a little
+erdo$id <- paste('ERDO', 1:nrow(erdo), sep = '')
+erdo$type <- rep(NA, nrow(erdo))
+erdo$type[erdo$type1 == 'Sign' | erdo$type1 == 'Excrement' | erdo$type1 == 'Other sign' | erdo$type1 == 'Other'] <- 'other_sign'
+erdo$type[erdo$type1 == 'Sighting'] <- 'sighting'
+erdo$type[erdo$type1 == 'Roadkill'] <- 'roadkill'
+erdo$type[erdo$type1 == 'Carcass'] <- 'carcass'
+erdo$type[erdo$type1 == 'Camera'] <- 'camera'
+erdo$type[erdo$type1 == 'Track'] <- 'track'
+
+## add decade
+erdo$decade <- rep(NA, nrow(erdo))
+erdo$decade[erdo$year >= 1910 & erdo$year < 1920] <- '1910s'
+erdo$decade[erdo$year >= 1920 & erdo$year < 1930] <- '1920s'
+erdo$decade[erdo$year >= 1930 & erdo$year < 1940] <- '1930s'
+erdo$decade[erdo$year >= 1940 & erdo$year < 1950] <- '1940s'
+erdo$decade[erdo$year >= 1950 & erdo$year < 1960] <- '1950s'
+erdo$decade[erdo$year >= 1960 & erdo$year < 1970] <- '1960s'
+erdo$decade[erdo$year >= 1970 & erdo$year < 1980] <- '1970s'
+erdo$decade[erdo$year >= 1980 & erdo$year < 1990] <- '1980s'
+erdo$decade[erdo$year >= 1990 & erdo$year < 2000] <- '1990s'
+erdo$decade[erdo$year >= 2000 & erdo$year < 2010] <- '2000s'
+erdo$decade[erdo$year >= 2010 & erdo$year < 2020] <- '2010s'
+
+## reorder
+erdo <- erdo[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer', 'utm_e', 'utm_n', 'info',
+                'utm_zone', 'source2', 'location2', 'county', 'accuracy', 'year', 'month', 'city', 
+                'fs_unit_id', 'coord_uncertainty', 'alt', 'catalog_no', 'observer_title',
+                'contact', 'type1', 'type2', 'record_no', 'website', 'datum', 'lat_n', 'lon_w', 'elevation',
+                'documentation', 'obs_confidence', 'date_entered', 'source_comments')]
+
+## will need to clip to Northern CA but for now:
+erdo <- subset(erdo, utm_zone != '11N')
+
+erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
+                                    data=data.frame(erdo),
+                                    proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+plot(erdo.spdf)
+
+writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_061616', driver = 'ESRI Shapefile')
+write.csv(misc, 'ERDO_cleaned_061616.csv')
