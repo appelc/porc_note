@@ -24,3 +24,5 @@ gbif.pts <- subset(gbif.pts)
 gbif.pts$institutionCode <- factor(gbif.pts$institutionCode)
 unique(gbif.pts$institutionCode)
 table(gbif.pts$institutionCode)
+
+write.csv(gbif.pts, "./Spreadsheets/gbif-subset-16jun2016.csv")
