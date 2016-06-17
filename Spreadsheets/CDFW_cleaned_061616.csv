@@ -1,0 +1,104 @@
+"","source","id","type","date","decade","observer","info","species","tot_obs","type1","type2","coords.x1","coords.x2","optional"
+"1","CDFW","CDFW1","roadkill",2011-11-11,"2010s","Joe Croteau","north side of road","Porcupine",1,"Dead","Road Kill",542005.447722689,4610785.55770565,TRUE
+"2","CDFW","CDFW2","roadkill",2010-04-08,"2010s","Valentine",NA,"Porcupine",1,"Dead","Road Kill",498675.972300867,4297354.5110413,TRUE
+"3","CDFW","CDFW3","roadkill",2011-12-08,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",548319.938210882,4608204.30036033,TRUE
+"6","CDFW","CDFW6","roadkill",2004-09-14,"2000s","D. Acomb",NA,"Porcupine",1,"Dead","Road Kill",495059.984958072,4308280.21124412,TRUE
+"7","CDFW","CDFW7","sighting",2009-10-02,"2000s","Scott Koller","stripping bark from tree","Porcupine",1,"Alive",NA,470096.299466913,4325530.39327764,TRUE
+"8","CDFW","CDFW8","roadkill",1997-05-12,"1990s","Charlotte Ambrose","reported by GP biologsit","Porcupine",1,"Dead","Road Kill",453884.867912154,4298061.65303365,TRUE
+"9","CDFW","CDFW9","roadkill",2002-06-18,"2000s","Erin Simmons","reported by BLM GIS","Porcupine",1,"Dead","Road Kill",483133.857305753,4331977.22171216,TRUE
+"10","CDFW","CDFW10","sighting",2005-01-05,"2000s","Scott Koller","observed during helicopter deer transects","Porcupine",1,"Alive",NA,493413.255773363,4307588.54559182,TRUE
+"11","CDFW","CDFW11","roadkill",2011-08-01,"2010s","Caitlin Bean","On the side of Big Springs Rd near the Mayten intersection.","Porcupine",1,"Dead","Road Kill",550133.62558036,4604717.33127227,TRUE
+"12","CDFW","CDFW12","sighting",2012-05-19,"2010s","Jeremy Bonesio","1:00 A.M.","Porcupine",1,"Alive",NA,539757.965774039,4419348.94484965,TRUE
+"13","CDFW","CDFW13","sighting",2012-07-09,"2010s","Richard Callas","Live, evidence of head trauma or sinus infection.","Porcupine",1,"Alive",NA,534597.023564935,4614526.16926527,TRUE
+"14","CDFW","CDFW14","sighting",2012-06-29,"2010s","Zane Kagley","10:00 P.M.","Porcupine",1,"Alive",NA,494080.252339622,4315808.21364362,TRUE
+"15","CDFW","CDFW15","carcass",2012-05-15,"2010s","Robert Keiffer","Adult, near riparian area","Porcupine",1,"Dead","Unknown",489883.828068343,4314946.85869627,TRUE
+"16","CDFW","CDFW16","roadkill",2012-08-17,"2010s","Linda Radford","Center divide, 1 mile north of Lakehead, CA","Porcupine",1,"Dead","Road Kill",551836.274339573,4528711.58038212,TRUE
+"17","CDFW","CDFW17","carcass",2010-07-15,"2010s","Julie Bawcom","Skull was found in duff at a proposed road crossing restoration site on SF Caspar ""Ziemer Road""","Porcupine",1,"Dead","Unknown",438198.759172588,4355627.18160335,TRUE
+"18","CDFW","CDFW18","roadkill",2012-08-04,"2010s","Richard Callas","On edge of road","Porcupine",1,"Dead","Road Kill",547235.68778237,4588278.74750089,TRUE
+"19","CDFW","CDFW19","sighting",2012-08-19,"2010s","Richard Callas","Alive in road.","Porcupine",1,"Alive",NA,546956.220370434,4591184.01621236,TRUE
+"20","CDFW","CDFW20","roadkill",2012-09-05,"2010s","Richard Callas","Median Barrier near mile post 55","Porcupine",1,"Dead","Road Kill",535362.598457726,4629294.35976505,TRUE
+"21","CDFW","CDFW21","roadkill",2012-10-15,"2010s","Richard Callas","Northbound lane of I5","Porcupine",1,"Dead","Road Kill",545877.925834003,4591087.83498772,TRUE
+"22","CDFW","CDFW22","roadkill",2012-10-12,"2010s","Clare Golec",NA,"Porcupine",1,"Dead","Road Kill",394170.664585335,4491917.24115817,TRUE
+"23","CDFW","CDFW23","roadkill",2012-10-31,"2010s","Sporty Pair","On CR306, approx. 22 miles west of Orland, CA","Porcupine",1,"Dead","Road Kill",540959.73323685,4402954.30722297,TRUE
+"24","CDFW","CDFW24","roadkill",2013-04-18,"2010s","Richard Callas","East side of I-5, 3 miles south of Grenada exit.","Porcupine",1,"Dead","Road Kill",540946.109733843,4606028.28431454,TRUE
+"25","CDFW","CDFW25","camera",2011-09-24,"2010s","Pete Figura","Trail camera detection.","Porcupine",1,"Alive",NA,643119.700535503,4482918.64228569,TRUE
+"26","CDFW","CDFW26","camera",2011-09-19,"2010s","Pete Figura","Trail camera detection.","Porcupine",1,"Alive",NA,643366.976150022,4484975.93401296,TRUE
+"27","CDFW","CDFW27","camera",2011-10-28,"2010s","Pete Figura","Trail camera detection.","Porcupine",1,"Alive",NA,621508.949053412,4504265.59819152,TRUE
+"28","CDFW","CDFW28","camera",2010-08-29,"2010s","Pete Figura","Trail camera detection.","Porcupine",1,"Alive",NA,645840.996126453,4481897.70475403,TRUE
+"29","CDFW","CDFW29","camera",2009-09-28,"2000s","Pete Figura","Trail camera detection.","Porcupine",1,"Alive",NA,637692.488595331,4486955.0563366,TRUE
+"30","CDFW","CDFW30","roadkill",2013-05-29,"2010s","Sheli Wingo","Sheli Wingo of USFWS (Sheli_Wingo@fws.ca.gov) reported this observation.  ""Dead porcupine on side of road the morning of 5-29-13. It was on the west side of Hwy 99E and appeared to be an adult. The carcass was gone by that evening commute home at 5:30pm.","Porcupine",1,"Dead","Road Kill",579401.292883619,4424091.45989009,TRUE
+"31","CDFW","CDFW31","sighting",2012-06-18,"2010s","Tracy Evans","Friend of Tricia Bratcher.","Porcupine",1,"Alive",NA,641000.308319716,4462588.36899822,TRUE
+"32","CDFW","CDFW32","roadkill",2013-06-17,"2010s","Rhonda Posey","Adult, approx. 1 mile east of McCloud on hwy 89.","Porcupine",1,"Dead","Road Kill",574104.027177903,4567088.07482657,TRUE
+"33","CDFW","CDFW33","roadkill",2013-06-27,"2010s","Joe Croteau","Near the Burton ranch.","Porcupine",1,"Dead","Road Kill",526715.546702957,4613939.19868998,TRUE
+"34","CDFW","CDFW34","roadkill",2013-06-08,"2010s","Mike Carion","Have a photo and a quill.","Porcupine",1,"Dead","Road Kill",568343.202882623,4417797.09250928,TRUE
+"35","CDFW","CDFW35","roadkill",2013-07-12,"2010s","Peter Perrine","Peter Perrine reported this to Eric Haney.  Peter said that the actual location is rough.  It could be as much as 1/2 mile away from this point along A-12.","Porcupine",1,"Dead","Road Kill",552479.91775011,4607325.87442533,TRUE
+"36","CDFW","CDFW36","roadkill",2013-07-25,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",548116.76360411,4608200.90370072,TRUE
+"37","CDFW","CDFW37","roadkill",2013-07-24,"2010s","Joe Croteau",NA,"Porcupine",1,"Dead","Road Kill",543374.410807891,4610132.27559414,TRUE
+"38","CDFW","CDFW38","roadkill",2013-08-01,"2010s","Brenna Montagne",NA,"Porcupine",1,"Dead","Road Kill",563490.426076703,4569004.240474,TRUE
+"39","CDFW","CDFW39","roadkill",2013-08-22,"2010s","Paul Harlan","Collins Pines VP, elevation 5280 ft.","Porcupine",1,"Dead","Road Kill",677813.71753877,4468312.65307519,TRUE
+"40","CDFW","CDFW40","roadkill",2013-09-03,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",495632.584349292,4626121.30788555,TRUE
+"41","CDFW","CDFW41","roadkill",2013-09-23,"2010s","Richard Callas",NA,"Porcupine",1,"Dead","Road Kill",538917.613049161,4610246.58059295,TRUE
+"42","CDFW","CDFW42","sighting",2013-10-05,"2010s","Joe Croteau",NA,"Porcupine",1,"Alive",NA,546784.334848843,4617346.44246241,TRUE
+"43","CDFW","CDFW43","camera",2013-05-24,"2010s","Pete Figura","On game camera.","Porcupine",1,"Alive",NA,638537.06893667,4454818.13894401,TRUE
+"44","CDFW","CDFW44","roadkill",2014-03-08,"2010s","Joe Croteau",NA,"Porcupine",1,"Dead","Road Kill",534942.630703475,4619997.39965783,TRUE
+"45","CDFW","CDFW45","roadkill",2014-03-06,"2010s","Kevin Smith","Carcass 2m from seldom used forest rd.  Lots of quills right on side of road.  Carcass very decayed, mostly skin and bones left.","Porcupine",1,"Dead","Road Kill",634410.662588943,4468630.29964119,TRUE
+"46","CDFW","CDFW46","roadkill",2014-05-09,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",538877.755376441,4610346.86830171,TRUE
+"47","CDFW","CDFW47","roadkill",2014-05-30,"2010s","Charna Gilmore","Reported to Jennifer Bull","Porcupine",1,"Dead","Road Kill",509706.624174427,4589721.3620261,TRUE
+"48","CDFW","CDFW48","roadkill",2014-07-29,"2010s","Richard Callas","North bound lane of I-5","Porcupine",1,"Dead","Road Kill",531321.194176402,4613889.19700368,TRUE
+"49","CDFW","CDFW49","roadkill",2014-05-01,"2010s","Yvette Adams","Location is approximate.  Date is approx.  between Feb. and August.","Porcupine",1,"Dead","Road Kill",539425.911589423,4619983.79523384,TRUE
+"50","CDFW","CDFW50","sighting",2014-05-01,"2010s","Yvette Adams","Location is approximate.  Date is approx.  between Feb. and August.","Porcupine",1,"Alive",NA,531383.27835308,4613750.67352584,TRUE
+"51","CDFW","CDFW51","sighting",2014-08-01,"2010s","Zac Chambers","Location and date is approx.","Porcupine",1,"Alive",NA,590924.04071414,4395502.98524477,TRUE
+"52","CDFW","CDFW52","sighting",2014-08-24,"2010s","Chad Alexander","Around 10 P.M.","Porcupine",1,"Alive",NA,587282.675861903,4386551.80863055,TRUE
+"53","CDFW","CDFW53","carcass",2005-03-01,"2000s","Chad Alexander","I know of an encounter explained to me by a resident on the out skirts of Chico (Oak Way) that had a porcupine in their back yard. I believe this one was dispatched. This happened in the spring of 2005.","Porcupine",1,"Dead","Shot",593982.145120154,4398978.23125443,TRUE
+"54","CDFW","CDFW54","sighting",2014-07-15,"2010s","Chad Alexander","Recently I talked with a subject at the Pine Creek Boat launch on River Rd. near HWY 32 who saw a porcupine walking into an Almond Orchard at that location. This was recent, probably two weeks ago.","Porcupine",1,"Alive",NA,589178.416380932,4399270.71558577,TRUE
+"55","CDFW","CDFW55","roadkill",2014-08-27,"2010s","Joe Croteau",NA,"Porcupine",1,"Dead","Road Kill",552159.327943983,4581718.57857991,TRUE
+"56","CDFW","CDFW56","camera",2014-06-13,"2010s","Pete Figura","Porcupine on a trail camera.  Passive camera set across hiking trail.","Porcupine",1,"Alive",NA,656229.819788798,4479142.03426043,TRUE
+"57","CDFW","CDFW57","roadkill",2014-08-14,"2010s","Steve Burton",NA,"Porcupine",1,"Dead","Road Kill",531843.257997334,4617900.30817665,TRUE
+"58","CDFW","CDFW58","roadkill",2014-08-07,"2010s","Richard Callas","1.25 miles south of the 1st Yreka Exit (for highway 3) on the north bound lane","Porcupine",1,"Dead","Road Kill",531216.483207641,4614001.45926732,TRUE
+"59","CDFW","CDFW59","roadkill",2014-05-01,"2010s","Yvette Adams","Location is approximate.  Date is approx.  between Feb. and August.","Porcupine",1,"Dead","Road Kill",531343.828751425,4613786.08974402,TRUE
+"60","CDFW","CDFW60","sighting",2014-08-01,"2010s","Zac Chambers","Location and date is approx.","Porcupine",1,"Alive",NA,590929.583495762,4395520.45949578,TRUE
+"61","CDFW","CDFW61","roadkill",2014-08-12,"2010s","Chad Alexander","Location and date is approx.","Porcupine",1,"Dead","Road Kill",590927.668400739,4395507.38026789,TRUE
+"62","CDFW","CDFW62","sighting",2014-07-10,"2010s","Jacob Olsen","Walking across the road on the Drumheller Slough Unit.","Porcupine",1,"Alive",NA,586089.123343982,4363289.32139884,TRUE
+"63","CDFW","CDFW63","roadkill",2007-03-01,"2000s","Chad Alexander","Early spring of 2007.","Porcupine",1,"Dead","Road Kill",587022.826268288,4387010.27992438,TRUE
+"64","CDFW","CDFW64","roadkill",2014-05-28,"2010s","Derek Acomb","Female","Porcupine",1,"Dead","Road Kill",501931.564408736,4290133.0471991,TRUE
+"65","CDFW","CDFW65","sighting",2009-10-15,"2000s","Mike van Hattem",NA,"Porcupine",1,"Alive",NA,396722.77124769,4626768.57926873,TRUE
+"66","CDFW","CDFW66","roadkill",2014-08-21,"2010s","Scott Koller","Female, Mile marker 5.00 Highway 253  (in between Ukiah and Boonville)","Porcupine",1,"Dead","Road Kill",474143.025180942,4319657.53446329,TRUE
+"67","CDFW","CDFW67","sighting",2014-08-16,"2010s","Steve Ulrich","2330 hours Hobart Mills Rd., 2 miles East of Hwy 89, Nevada County.","Porcupine",1,"Alive",NA,743355.411084794,4367399.90177276,TRUE
+"68","CDFW","CDFW68","roadkill",2014-08-31,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",541754.847426128,4602958.47211074,TRUE
+"69","CDFW","CDFW69","roadkill",2014-09-10,"2010s","Steve Burton","Also reported by Bob Schaefer.","Porcupine",1,"Dead","Road Kill",532783.642018683,4617855.96899324,TRUE
+"70","CDFW","CDFW70","roadkill",2014-09-12,"2010s","Steve Burton",NA,"Porcupine",1,"Dead","Road Kill",535571.030369916,4617530.1552299,TRUE
+"71","CDFW","CDFW71","roadkill",2014-10-30,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",544360.244616461,4633952.52970027,TRUE
+"72","CDFW","CDFW72","roadkill",2014-10-31,"2010s","Kent Harrison",NA,"Porcupine",1,"Dead","Road Kill",587871.322131367,4386042.34636461,TRUE
+"73","CDFW","CDFW73","roadkill",2014-04-23,"2010s","Danny Cluck","Lassen Nat. Forest Data","Porcupine",1,"Dead","Road Kill",672416.063435222,4484094.98412198,TRUE
+"74","CDFW","CDFW74","roadkill",2013-05-01,"2010s","Rickman","Lassen Nat. Forest Data - Hwy 44, just W of Windy Hollow","Porcupine",1,"Dead","Road Kill",664507.078658537,4491337.05275782,TRUE
+"75","CDFW","CDFW75","roadkill",2013-08-01,"2010s","A Villalovos","Lassen Nat. Forest Data - Hwy 36, at Coppervale","Porcupine",1,"Dead","Road Kill",677971.980752151,4468397.44452272,TRUE
+"76","CDFW","CDFW76","sighting",2013-08-03,"2010s","Rickman","Lassen Nat. Forest Data - Photo-Pika survey area Cone Lk 2, NE sec 15, T31N, R7E","Porcupine",1,"Alive",NA,654472.304692923,4490532.40339933,TRUE
+"77","CDFW","CDFW77","sighting",2009-11-25,"2000s","Mike Cone","Lassen National Forest Data - Photo - T30N Range 9E Section 6, 104 Rd; nr Norvell Flat","Porcupine",1,"Alive",NA,667811.021489498,4483419.8506351,TRUE
+"78","CDFW","CDFW78","other_sign",2007-01-01,"2000s","Trickman","Lassen National Forest Data - Tracks/Scat - SESE sec 23, T31N, R8E.  East of A21/44 intersection","Porcupine",1,"Alive",NA,666103.730873631,4488217.0243349,TRUE
+"79","CDFW","CDFW79","other_sign",2007-05-01,"2000s","M Hennessey","Lassen National Forest Data - Chewed sign/plywood - 21 Road/A-1 intersection","Porcupine",1,"Alive",NA,681970.34379997,4496733.37725616,TRUE
+"80","CDFW","CDFW80","other_sign",2007-09-01,"2000s","M Stone","Lassen National Forest Data - Chewed trees - aspen stand in Bear Flat area, SESE Sec 9","Porcupine",1,"Alive",NA,701911.163506837,4463138.5340658,TRUE
+"81","CDFW","CDFW81","sighting",1993-07-01,"1990s","Bailey","Lassen National Forest Data - T33N, R9E, S32,NENW; NR Little Harvey Mtn","Porcupine",2,"Alive",NA,669793.146674495,4505753.57514298,TRUE
+"82","CDFW","CDFW82","sighting",1991-05-03,"1990s","Nordensten","Lassen National Forest Data - T30N, R9E, S13, NESE; tween Hog and McCoy","Porcupine",1,"Alive",NA,676748.055478461,4480713.77954866,TRUE
+"83","CDFW","CDFW83","sighting",1990-08-01,"1990s","Unknown","Lassen National Forest Data - T29N, R12E, S21, NWSW; nr Wingfield Rd, S of Susanville","Porcupine",1,"Alive",NA,700173.015486324,4470106.14019248,TRUE
+"84","CDFW","CDFW84","sighting",2004-02-01,"2000s","Linda Cunningham","4014 Eagle Creek Rd.","Porcupine",1,"Alive",NA,525730.237571726,4554158.16925012,TRUE
+"85","CDFW","CDFW85","roadkill",2015-02-11,"2010s","Tom Blankinship",NA,"Porcupine",1,"Dead","Road Kill",400200.202214479,4635625.99858754,TRUE
+"86","CDFW","CDFW86","sighting",2015-04-19,"2010s","Bob Schaefer",NA,"Porcupine",1,"Alive",NA,512302.607184962,4589548.99191488,TRUE
+"87","CDFW","CDFW87","roadkill",2015-06-22,"2010s","Ken Morefield","Shoulder of I-5 North","Porcupine",1,"Dead","Road Kill",541729.101717327,4603079.50692161,TRUE
+"88","CDFW","CDFW88","roadkill",2014-10-24,"2010s","Kent Harrison",NA,"Porcupine",1,"Dead","Road Kill",588899.007022179,4386377.02742019,TRUE
+"89","CDFW","CDFW89","roadkill",2014-06-26,"2010s","A Neel","Lassen Nat. Forest Data","Porcupine",1,"Dead","Road Kill",661582.054331841,4494806.26921288,TRUE
+"90","CDFW","CDFW90","roadkill",2013-05-01,"2010s","Rickman","Lassen Nat. Forest Data - Hwy 44, east of Bridge Cr where it enters McCoy Flat","Porcupine",1,"Dead","Road Kill",673135.41237454,4483451.1743424,TRUE
+"91","CDFW","CDFW91","sighting",2012-06-01,"2010s","T Rickman","Lassen Nat. Forest Data - Windy Hollow; SWNW sec 23, T31N, R8E","Porcupine",1,"Alive",NA,664790.015621082,4489075.14784429,TRUE
+"92","CDFW","CDFW92","sighting",2010-08-01,"2010s","T Rickman","Lassen Nat. Forest Data - Visual, on side of hwy, about midnight","Porcupine",1,"Alive",NA,665627.416622731,4489369.90548014,TRUE
+"93","CDFW","CDFW93","other_sign",2007-01-01,"2000s","Trickman","Lassen National Forest Data - Tracks/Scat - NENE sec 22, T31N, R8E, above boulder slope; windy hollow","Porcupine",1,"Alive",NA,664394.172376418,4489587.43463973,TRUE
+"94","CDFW","CDFW94","sighting",2007-05-01,"2000s","J Lundergreen","Lassen National Forest Data - NW corner of A-21/hwy 44","Porcupine",1,"Alive",NA,666071.102058774,4488661.90130799,TRUE
+"95","CDFW","CDFW95","other_sign",2007-08-01,"2000s","M Stone","Lassen National Forest Data - Chewed trees - aspen stands out in Lasco area, middle Sec 30","Porcupine",1,"Alive",NA,668648.664484358,4477541.75275249,TRUE
+"96","CDFW","CDFW96","sighting",1999-06-27,"1990s","Bailey","Lassen National Forest Data - T29N, R10E, S22, SENE; nr W Fk Willard Cr","Porcupine",1,"Alive",NA,683532.62064278,4470224.52719257,TRUE
+"97","CDFW","CDFW97","other_sign",2014-06-18,"2010s","Wildlife Crew","Lassen National Forest Data - Pellets, Photo - in rocks above 1st paved section on the 10 Rd as you drive south from Hwy 44","Porcupine",1,"Alive",NA,658538.667676753,4493428.87020819,TRUE
+"98","CDFW","CDFW98","sighting",1993-07-01,"1990s","Unknown","Lassen National Forest Data - T28N, R12E, S6, NWNE; Diamond Mtns","Porcupine",1,"Alive",NA,698176.781399682,4465938.17909093,TRUE
+"99","CDFW","CDFW99","sighting",1992-06-26,"1990s","Bailey","Lassen National Forest Data - T32N, R7E, S21, NE1/4, SE1/16; Grays Flat area","Porcupine",1,"Alive",NA,653082.040798876,4497632.25192531,TRUE
+"100","CDFW","CDFW100","sighting",1991-05-24,"1990s","Humphrey","Lassen National Forest Data - T32N, R9E, S33, NE1/4; pine creek valley area","Porcupine",1,"Alive",NA,672329.394916371,4495779.04278289,TRUE
+"101","CDFW","CDFW101","other_sign",2007-05-01,"2000s","T Rickman","Lassen National Forest Data - cambial scarring - Lake of the Woods Bald Eagle","Porcupine",1,"Alive",NA,687453.209529676,4498579.74295519,TRUE
+"102","CDFW","CDFW102","sighting",2015-08-31,"2010s","Bob Schaefer","Small - possible juveniles down in the river bottom.","Porcupine",2,"Alive",NA,512310.320164169,4589548.13510426,TRUE
+"103","CDFW","CDFW103","roadkill",2015-09-14,"2010s","Bob Schaefer","On I-5 south of Yreka and just south of Easy St.","Porcupine",2,"Dead","Road Kill",532585.414953647,4612825.03670026,TRUE
+"104","CDFW","CDFW104","carcass",2015-10-23,"2010s","Richard Callas",NA,"Porcupine",1,"Dead",NA,541513.282652868,4604210.69753163,TRUE
+"105","CDFW","CDFW105","roadkill",2016-01-12,"2010s","Bob Schaefer",NA,"Porcupine",1,"Dead","Road Kill",542507.393451035,4610429.74861771,TRUE
