@@ -1,0 +1,106 @@
+FID,OBJECTID,DateSurv,Observer,Species,TotObs,ObsNotes,Status,DeathCause
+0,1,11/11/2011,Joe Croteau,Porcupine,1,north side of road,Dead,Road Kill
+1,2,04/08/2010,Valentine,Porcupine,1, ,Dead,Road Kill
+2,3,12/08/2011,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+3,4,12/13/2010,Cris Langner,Porcupine,1,Date is approximate,Dead,Road Kill
+4,5,10/13/2011,Cris Langner,Porcupine,1,Date is approximate,Dead,Road Kill
+5,6,09/14/2004,D. Acomb,Porcupine,1, ,Dead,Road Kill
+6,7,10/02/2009,Scott Koller,Porcupine,1,stripping bark from tree,Alive, 
+7,8,05/12/1997,Charlotte Ambrose,Porcupine,1,reported by GP biologsit,Dead,Road Kill
+8,9,06/18/2002,Erin Simmons,Porcupine,1,reported by BLM GIS,Dead,Road Kill
+9,10,01/05/2005,Scott Koller,Porcupine,1,observed during helicopter deer transects,Alive, 
+10,11,08/01/2011,Caitlin Bean,Porcupine,1,On the side of Big Springs Rd near the Mayten intersection.,Dead,Road Kill
+11,12,05/19/2012,Jeremy Bonesio,Porcupine,1,1:00 A.M.,Alive, 
+12,13,07/09/2012,Richard Callas,Porcupine,1,"Live, evidence of head trauma or sinus infection.",Alive, 
+13,14,06/29/2012,Zane Kagley,Porcupine,1,10:00 P.M.,Alive, 
+14,15,05/15/2012,Robert Keiffer,Porcupine,1,"Adult, near riparian area",Dead,Unknown
+15,16,08/17/2012,Linda Radford,Porcupine,1,"Center divide, 1 mile north of Lakehead, CA",Dead,Road Kill
+16,17,07/15/2010,Julie Bawcom,Porcupine,1,Skull was found in duff at a proposed road crossing restoration site on SF Caspar ""Ziemer Road"",Dead,Unknown
+17,18,08/04/2012,Richard Callas,Porcupine,1,On edge of road,Dead,Road Kill
+18,19,08/19/2012,Richard Callas,Porcupine,1,Alive in road.,Alive, 
+19,20,09/05/2012,Richard Callas,Porcupine,1,Median Barrier near mile post 55,Dead,Road Kill
+20,21,10/15/2012,Richard Callas,Porcupine,1,Northbound lane of I5,Dead,Road Kill
+21,22,10/12/2012,Clare Golec,Porcupine,1, ,Dead,Road Kill
+22,23,10/31/2012,Sporty Pair,Porcupine,1,"On CR306, approx. 22 miles west of Orland, CA",Dead,Road Kill
+23,24,04/18/2013,Richard Callas,Porcupine,1,"East side of I-5, 3 miles south of Grenada exit.",Dead,Road Kill
+24,25,09/24/2011,Pete Figura,Porcupine,1,Trail camera detection.,Alive, 
+25,26,09/19/2011,Pete Figura,Porcupine,1,Trail camera detection.,Alive, 
+26,27,10/28/2011,Pete Figura,Porcupine,1,Trail camera detection.,Alive, 
+27,28,08/29/2010,Pete Figura,Porcupine,1,Trail camera detection.,Alive, 
+28,29,09/28/2009,Pete Figura,Porcupine,1,Trail camera detection.,Alive, 
+29,34,05/29/2013,Sheli Wingo,Porcupine,1,Sheli Wingo of USFWS (Sheli_Wingo@fws.ca.gov) reported this observation.  ""Dead porcupine on side of road the morning of 5-29-13. It was on the west side of Hwy 99E and appeared to be an adult. The carcass was gone by that evening commute home at 5:30pm,Dead,Road Kill
+30,434,06/18/2012,Tracy Evans,Porcupine,1,Friend of Tricia Bratcher.,Alive, 
+31,435,06/17/2013,Rhonda Posey,Porcupine,1,"Adult, approx. 1 mile east of McCloud on hwy 89.",Dead,Road Kill
+32,436,06/27/2013,Joe Croteau,Porcupine,1,Near the Burton ranch.,Dead,Road Kill
+33,437,06/08/2013,Mike Carion,Porcupine,1,Have a photo and a quill.,Dead,Road Kill
+34,438,07/12/2013,Peter Perrine,Porcupine,1,Peter Perrine reported this to Eric Haney.  Peter said that the actual location is rough.  It could be as much as 1/2 mile away from this point along A-12.,Dead,Road Kill
+35,838,07/25/2013,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+36,839,07/24/2013,Joe Croteau,Porcupine,1, ,Dead,Road Kill
+37,840,08/01/2013,Brenna Montagne,Porcupine,1, ,Dead,Road Kill
+38,841,08/22/2013,Paul Harlan,Porcupine,1,"Collins Pines VP, elevation 5280 ft.",Dead,Road Kill
+39,842,09/03/2013,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+40,843,09/23/2013,Richard Callas,Porcupine,1, ,Dead,Road Kill
+41,1243,10/05/2013,Joe Croteau,Porcupine,1, ,Alive, 
+42,1643,05/24/2013,Pete Figura,Porcupine,1,On game camera.,Alive, 
+43,1645,03/08/2014,Joe Croteau,Porcupine,1, ,Dead,Road Kill
+44,2045,03/06/2014,Kevin Smith,Porcupine,1,"Carcass 2m from seldom used forest rd.  Lots of quills right on side of road.  Carcass very decayed, mostly skin and bones left.",Dead,Road Kill
+45,2445,05/09/2014,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+46,2845,05/30/2014,Charna Gilmore,Porcupine,1,Reported to Jennifer Bull,Dead,Road Kill
+47,2846,07/29/2014,Richard Callas,Porcupine,1,North bound lane of I-5,Dead,Road Kill
+48,2848,05/01/2014,Yvette Adams,Porcupine,1,Location is approximate.  Date is approx.  between Feb. and August.,Dead,Road Kill
+49,2849,05/01/2014,Yvette Adams,Porcupine,1,Location is approximate.  Date is approx.  between Feb. and August.,Alive, 
+50,2850,08/01/2014,Zac Chambers,Porcupine,1,Location and date is approx.,Alive, 
+51,2851,08/24/2014,Chad Alexander,Porcupine,1,Around 10 P.M.,Alive, 
+52,2852,03/01/2005,Chad Alexander,Porcupine,1,I know of an encounter explained to me by a resident on the out skirts of Chico (Oak Way) that had a porcupine in their back yard. I believe this one was dispatched. This happened in the spring of 2005.,Dead,Shot
+53,2853,07/15/2014,Chad Alexander,Porcupine,1,"Recently I talked with a subject at the Pine Creek Boat launch on River Rd. near HWY 32 who saw a porcupine walking into an Almond Orchard at that location. This was recent, probably two weeks ago.",Alive, 
+54,2854,08/27/2014,Joe Croteau,Porcupine,1, ,Dead,Road Kill
+55,3248,06/13/2014,Pete Figura,Porcupine,1,Porcupine on a trail camera.  Passive camera set across hiking trail.,Alive, 
+56,3249,08/14/2014,Steve Burton,Porcupine,1, ,Dead,Road Kill
+57,3250,08/07/2014,Richard Callas,Porcupine,1,1.25 miles south of the 1st Yreka Exit (for highway 3) on the north bound lane,Dead,Road Kill
+58,3251,05/01/2014,Yvette Adams,Porcupine,1,Location is approximate.  Date is approx.  between Feb. and August.,Dead,Road Kill
+59,3252,08/01/2014,Zac Chambers,Porcupine,1,Location and date is approx.,Alive, 
+60,3253,08/12/2014,Chad Alexander,Porcupine,1,Location and date is approx.,Dead,Road Kill
+61,3254,07/10/2014,Jacob Olsen,Porcupine,1,Walking across the road on the Drumheller Slough Unit.,Alive, 
+62,3255,03/01/2007,Chad Alexander,Porcupine,1,Early spring of 2007.,Dead,Road Kill
+63,3256,05/28/2014,Derek Acomb,Porcupine,1,Female,Dead,Road Kill
+64,3257,10/15/2009,Mike van Hattem,Porcupine,1, ,Alive, 
+65,3647,08/21/2014,Scott Koller,Porcupine,1,"Female, Mile marker 5.00 Highway 253  (in between Ukiah and Boonville)",Dead,Road Kill
+66,3648,08/16/2014,Steve Ulrich,Porcupine,1,"2330 hours Hobart Mills Rd., 2 miles East of Hwy 89, Nevada County.",Alive, 
+67,2855,08/31/2014,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+68,2856,09/10/2014,Steve Burton,Porcupine,1,Also reported by Bob Schaefer.,Dead,Road Kill
+69,2857,09/12/2014,Steve Burton,Porcupine,1, ,Dead,Road Kill
+70,3259,10/30/2014,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
+71,3260,10/31/2014,Kent Harrison,Porcupine,1, ,Dead,Road Kill
+72,3261,04/23/2014,Danny Cluck,Porcupine,1,Lassen Nat. Forest Data,Dead,Road Kill
+73,3262,05/01/2013,Rickman,Porcupine,1,"Lassen Nat. Forest Data - Hwy 44, just W of Windy Hollow",Dead,Road Kill
+74,3263,08/01/2013,A Villalovos,Porcupine,1,"Lassen Nat. Forest Data - Hwy 36, at Coppervale",Dead,Road Kill
+75,3264,08/03/2013,Rickman,Porcupine,1,"Lassen Nat. Forest Data - Photo-Pika survey area Cone Lk 2, NE sec 15, T31N, R7E",Alive, 
+76,3265,11/25/2009,Mike Cone,Porcupine,1,"Lassen National Forest Data - Photo - T30N Range 9E Section 6, 104 Rd; nr Norvell Flat",Alive, 
+77,3266,01/01/2007,Trickman,Porcupine,1,"Lassen National Forest Data - Tracks/Scat - SESE sec 23, T31N, R8E.  East of A21/44 intersection",Alive, 
+78,3267,05/01/2007,M Hennessey,Porcupine,1,Lassen National Forest Data - Chewed sign/plywood - 21 Road/A-1 intersection,Alive, 
+79,3268,09/01/2007,M Stone,Porcupine,1,"Lassen National Forest Data - Chewed trees - aspen stand in Bear Flat area, SESE Sec 9",Alive, 
+80,3269,07/01/1993,Bailey,Porcupine,2,"Lassen National Forest Data - T33N, R9E, S32,NENW; NR Little Harvey Mtn",Alive, 
+81,3270,05/03/1991,Nordensten,Porcupine,1,"Lassen National Forest Data - T30N, R9E, S13, NESE; tween Hog and McCoy",Alive, 
+82,3271,08/01/1990,Unknown,Porcupine,1,"Lassen National Forest Data - T29N, R12E, S21, NWSW; nr Wingfield Rd, S of Susanville",Alive, 
+83,3272,02/01/2004,Linda Cunningham,Porcupine,1,4014 Eagle Creek Rd.,Alive, 
+84,3273,02/11/2015,Tom Blankinship,Porcupine,1, ,Dead,Road Kill
+85,3274,04/19/2015,Bob Schaefer,Porcupine,1, ,Alive, 
+86,3275,06/22/2015,Ken Morefield,Porcupine,1,Shoulder of I-5 North,Dead,Road Kill
+87,3649,10/24/2014,Kent Harrison,Porcupine,1, ,Dead,Road Kill
+88,4049,06/26/2014,A Neel,Porcupine,1,Lassen Nat. Forest Data,Dead,Road Kill
+89,4050,05/01/2013,Rickman,Porcupine,1,"Lassen Nat. Forest Data - Hwy 44, east of Bridge Cr where it enters McCoy Flat",Dead,Road Kill
+90,4051,06/01/2012,T Rickman,Porcupine,1,"Lassen Nat. Forest Data - Windy Hollow; SWNW sec 23, T31N, R8E",Alive, 
+91,4052,08/01/2010,T Rickman,Porcupine,1,"Lassen Nat. Forest Data - Visual, on side of hwy, about midnight",Alive, 
+92,4053,01/01/2007,Trickman,Porcupine,1,"Lassen National Forest Data - Tracks/Scat - NENE sec 22, T31N, R8E, above boulder slope; windy hollow",Alive, 
+93,4054,05/01/2007,J Lundergreen,Porcupine,1,Lassen National Forest Data - NW corner of A-21/hwy 44,Alive, 
+94,4055,08/01/2007,M Stone,Porcupine,1,"Lassen National Forest Data - Chewed trees - aspen stands out in Lasco area, middle Sec 30",Alive, 
+95,4056,06/27/1999,Bailey,Porcupine,1,"Lassen National Forest Data - T29N, R10E, S22, SENE; nr W Fk Willard Cr",Alive, 
+96,4057,06/18/2014,Wildlife Crew,Porcupine,1,"Lassen National Forest Data - Pellets, Photo - in rocks above 1st paved section on the 10 Rd as you drive south from Hwy 44",Alive, 
+97,4058,07/01/1993,Unknown,Porcupine,1,"Lassen National Forest Data - T28N, R12E, S6, NWNE; Diamond Mtns",Alive, 
+98,4059,06/26/1992,Bailey,Porcupine,1,"Lassen National Forest Data - T32N, R7E, S21, NE1/4, SE1/16; Grays Flat area",Alive, 
+99,4060,05/24/1991,Humphrey,Porcupine,1,"Lassen National Forest Data - T32N, R9E, S33, NE1/4; pine creek valley area",Alive, 
+100,4061,05/01/2007,T Rickman,Porcupine,1,Lassen National Forest Data - cambial scarring - Lake of the Woods Bald Eagle,Alive, 
+101,4062,08/31/2015,Bob Schaefer,Porcupine,2,Small - possible juveniles down in the river bottom.,Alive, 
+102,4462,09/14/2015,Bob Schaefer,Porcupine,2,On I-5 south of Yreka and just south of Easy St.,Dead,Road Kill
+103,4862,10/23/2015,Richard Callas,Porcupine,1, ,Dead, 
+104,5262,01/12/2016,Bob Schaefer,Porcupine,1, ,Dead,Road Kill
