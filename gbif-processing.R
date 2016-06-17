@@ -63,5 +63,5 @@ gbif.spdf@proj4string <- aoi@proj4string
 unique(gbif.pts$institutionCode)
 table(gbif.pts$institutionCode)
 
-writeOGR(gbif.spdf, dsn = '.', layer = 'Shapefiles/GBIF_061616', driver = 'ESRI Shapefile')
+writeOGR(gbif.spdf, dsn = '.', layer = 'Shapefiles/Observations/GBIF_061616', driver = 'ESRI Shapefile')
 write.csv(gbif.pts, "./Spreadsheets/gbif-subset-16jun2016-cleaned.csv")
