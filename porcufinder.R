@@ -42,10 +42,10 @@ pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
                                proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 plot(pf.spdf)
 
-## keep only those in California
-CA <- readOGR(dsn='Shapefiles/Admin', layer='CA_boundary', verbose=TRUE) ## import CA boundary shapefile
-proj4string(CA) <- proj4string(pf.spdf)
-pf.spdf <- pf.spdf[CA,]
+## keep only those in AOI
+aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
+aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0'))
+pf.spdf <- pf.spdf[aoi_utm,]
 
 writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
 write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
@@ -85,6 +85,9 @@ misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
                                   data=data.frame(misc),
                                   proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 plot(misc.spdf)
+
+## keep only those in AOI
+misc.spdf <- misc.spdf[aoi_utm,]
 
 writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/Observations/MISC_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'MISC_cleaned_061616.csv')
@@ -138,21 +141,15 @@ erdo <- erdo[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer'
                 'contact', 'type1', 'type2', 'record_no', 'website', 'datum', 'lat_n', 'lon_w', 'elevation',
                 'documentation', 'obs_confidence', 'date_entered', 'source_comments')]
 
-## will need to clip to Northern CA but for now:
-#erdo <- subset(erdo, utm_zone != '11N')
-
-# Load Northern CA AOI
-aoi <- readOGR(dsn="./Shapefiles", layer="ca_AOI2")
-
+## plot
 erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
                                     data=data.frame(erdo),
                                     proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 
-erdo.spdf$name <- over(erdo.spdf, aoi)$NAME
-
-erdo.spdf <- subset(erdo.spdf, name=="California")
-
-plot(erdo.spdf)
+## crop to AOI
+erdo.spdf <- erdo.spdf[aoi_utm,]
+#erdo.spdf$name <- over(erdo.spdf, aoi)$NAME ##CRS issue?
+#erdo.spdf <- subset(erdo.spdf, name=="California")
 
 writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
@@ -161,7 +158,7 @@ write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
 
 ## CDFW records from Richard Callas / Kathryn Purcell
 
-cdfw <- readOGR(dsn = 'Shapefiles', layer='CDFW_KP', verbose=TRUE)
+cdfw <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='CDFW_KP', verbose=TRUE)
 plot(cdfw)
 
 head(cdfw@data)
@@ -189,6 +186,47 @@ cdfw@data$decade[cdfw@data$date > '2010-01-01' & cdfw@data$date < '2020-01-01'] 
 cdfw@data <- cdfw@data[,c('source', 'id', 'type', 'date', 'decade', 'observer', 'info',
                           'species', 'tot_obs', 'type1', 'type2')]
 
+## crop to AOI
+proj4string(aoi_utm) <- proj4string(cdfw)
+cdfw <- cdfw[aoi_utm,]
+
 writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(cdfw, 'Spreadsheets/CDFW_cleaned_061616.csv')
 
+#######################################################
+
+## And Yocom
+
+yocom <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='Yocom', verbose=TRUE)
+plot(yocom)
+
+head(yocom@data)
+colnames(yocom@data) <- c('id', 'date', 'type1', 'year', 'observer', 'source', 'county',
+                         'location', 'info')
+## clean up
+yocom@data$id <- paste('YOC', 1:nrow(yocom@data), sep = '')
+yocom@data$type <- rep('NA', nrow(yocom@data))
+yocom@data$type[yocom@data$type1 == 'Sighting'] <- 'sighting'
+yocom@data$type[yocom@data$type1 == 'Roadkil' | yocom@data$type1 == 'Roadkill'] <- 'roadkill'
+yocom@data$type[yocom@data$type1 == 'Carcass'] <- 'carcass'
+yocom@data$type[yocom@data$type1 == 'Killed' | yocom@data$type1 == 'Shot' | yocom@data$type1 == 'Trapped'] <- 'killed'
+yocom@data$type[yocom@data$type1 == 'unknown' | yocom@data$type1 == 'no data'] <- 'unk'
+
+## add decade
+yocom@data$decade <- rep('NA', nrow(yocom@data))
+yocom@data$decade[yocom@data$year >= 1900 & yocom@data$year < 1910] <- '1900s'
+yocom@data$decade[yocom@data$year >= 1910 & yocom@data$year < 1920] <- '1910s'
+yocom@data$decade[yocom@data$year >= 1920 & yocom@data$year < 1930] <- '1920s'
+yocom@data$decade[yocom@data$year >= 1930 & yocom@data$year < 1940] <- '1930s'
+yocom@data$decade[yocom@data$year >= 1940 & yocom@data$year < 1950] <- '1940s'
+yocom@data$decade[yocom@data$year >= 1950 & yocom@data$year < 1960] <- '1950s'
+yocom@data$decade[yocom@data$year >= 1960 & yocom@data$year < 1970] <- '1960s'
+
+## reorder
+yocom@data <- yocom@data[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer',
+                            'info', 'type1', 'county', 'year')]
+
+writeOGR(yocom, dsn = '.', layer = 'Shapefiles/Observations/Yocom_cleaned_061616', driver = 'ESRI Shapefile')
+write.csv(yocom, 'Spreadsheets/Yocom_cleaned_061616.csv')
+
+## don't need to crop (all within AOI)
