@@ -177,6 +177,9 @@ cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Shot'] <- 'killed
 cdfw@data[c(25:29, 43, 56), 10] <- 'camera'
 cdfw@data[c(78:80, 93, 95, 97, 101), 10] <- 'other_sign'
 
+## one of these is duplicated in the ERDO database (from USFS NRIS): 'ERDO86'/'CDFW32'
+cdfw@data <- cdfw@data[-30,] 
+
 ## decade
 cdfw@data$decade <- rep(NA, nrow(cdfw@data))
 cdfw@data$decade[cdfw@data$date > '1990-01-01' & cdfw@data$date < '2000-01-01'] <- '1990s'
@@ -231,3 +234,10 @@ writeOGR(yocom, dsn = '.', layer = 'Shapefiles/Observations/Yocom_cleaned_061616
 write.csv(yocom, 'Spreadsheets/Yocom_cleaned_061616.csv')
 
 ## don't need to crop (all within AOI)
+
+###################################################################
+
+## Can I merge them all here instead of in ArcMap? 
+## "merge" doesn't work well because they all have different attributes
+## would be easier to make figuers if they were merged (could sort by decade, type, etc.
+## instead of doing it for each shapefile separately)
