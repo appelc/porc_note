@@ -47,7 +47,7 @@ CA <- readOGR(dsn='Shapefiles/Admin', layer='CA_boundary', verbose=TRUE) ## impo
 proj4string(CA) <- proj4string(pf.spdf)
 pf.spdf <- pf.spdf[CA,]
 
-writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/PF_061616', driver='ESRI Shapefile') 
+writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
 write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
 
 #######################################################3
@@ -79,14 +79,14 @@ misc <- misc[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observor'
                 'utm_zone', 'geotagged', 'lat', 'lon', 'link', 'proj_notes', 'proj_notes2', 'include')]
 
 ## only keep approved / relevant ones
-misc1 <- misc[misc$include == 1,] 
+misc <- misc[misc$include == 1,] 
 
 misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
                                   data=data.frame(misc),
                                   proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 plot(misc.spdf)
 
-writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/MISC_061616', driver = 'ESRI Shapefile')
+writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/Observations/MISC_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'MISC_cleaned_061616.csv')
 
 #######################################################
@@ -154,7 +154,7 @@ erdo.spdf <- subset(erdo.spdf, name=="California")
 
 plot(erdo.spdf)
 
-writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_061616', driver = 'ESRI Shapefile')
+writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
 
 #######################################################
