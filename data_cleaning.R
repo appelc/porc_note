@@ -3,19 +3,22 @@
 
 library(googlesheets)
 library(rgdal)
+library(lubridate)
 
 gs_ls()
 porcufinder <- gs_title("Porcupines (Responses)")
 pf <- data.frame(gs_read(ss=porcufinder, ws="Form Responses", is.na(TRUE), range=cell_cols(1:33)))
 pf <- pf[-(1:3),c(2, 4, 5, 8, 19, 21, 28:33)] ## get rid of test rows & columns I don't need
-colnames(pf) <- c('type_obs', 'date', 'location', 'habitat', 'info', 'observor', 'prev_sub', 'proj_notes', 
+colnames(pf) <- c('type_obs', 'date', 'location', 'habitat', 'info', 'observer', 'prev_sub', 'proj_notes', 
                   'credibility', 'utm_e', 'utm_n', 'type')
 
 pf$utm_e <- as.numeric(pf$utm_e)
 pf$utm_n <- as.numeric(pf$utm_n)
 pf$credibility <- as.factor(pf$credibility)
 
-pf$date <- as.POSIXct(strptime(pf$date, "%m/%d/%Y %H:%M:%S"), tz="America/Los_Angeles")
+pf$posix <- as.POSIXct(strptime(pf$date, "%m/%d/%Y %H:%M:%S"), tz="America/Los_Angeles")
+pf$date <- as.Date(pf$posix, '%Y-%m-%d', tz = 'America/Los_Angeles')
+pf$year <- year(pf$date)
 
 ## clean up a little bit
 pf$source <- rep('PF', nrow(pf))
@@ -30,25 +33,25 @@ pf$decade[pf$date > '2000-01-01' & pf$date < '2010-01-01'] <- '2000s'
 pf$decade[pf$date > '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
 
 ## reorder
-pf <- pf[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observor', 'utm_e', 
-            'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility')] 
+pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 
+            'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility', 'posix')] 
 
 ## keep only credibility 2 (reliable description) or 3 (photos/video)
 pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
 
 ## plot
-pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
-                               data=data.frame(pf),
-                               proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
-plot(pf.spdf)
+#pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
+#                               data=data.frame(pf),
+#                               proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+#plot(pf.spdf)
 
 ## keep only those in AOI
-aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
-aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0'))
-pf.spdf <- pf.spdf[aoi_utm,]
+#aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
+#aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0'))
+#pf.spdf <- pf.spdf[aoi_utm,]
 
-writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
-write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
+#writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
+#write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
 
 #######################################################3
 
@@ -61,12 +64,14 @@ misc <- data.frame(gs_read(ss=sheet, ws='Records', is.na(TRUE), range=cell_cols(
 misc$utm_e <- as.numeric(misc$utm_e)
 misc$utm_n <- as.numeric(misc$utm_n)
 misc$date <- as.Date(misc$date, '%m/%d/%Y')
+misc$year <- year(misc$date)
 
 ## clean up a little
 misc$source[misc$source == 'Flickr'] <- 'FLICKR'
 misc$source[misc$source == 'iNaturalist'] <- 'INAT'
 misc$id[misc$source == 'FLICKR'] <- paste('FLICKR', 1:6, sep = '')
 misc$id[misc$source == 'INAT'] <- paste('INAT', 1:7, sep = '') ## combine these rows?
+misc$utm_zone <- as.character(misc$utm_zone)
 
 ## add decade
 misc$decade <- rep(NA, nrow(misc))
@@ -75,22 +80,22 @@ misc$decade[misc$date > '2000-01-01' & misc$date < '2010-01-01'] <- '2000s'
 misc$decade[misc$date > '2010-01-01' & misc$date < '2020-01-01'] <- '2010s'
 
 ## reorder
-misc <- misc[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observor', 'utm_e', 'utm_n', 'info',
+misc <- misc[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 'utm_n', 'info',
                 'utm_zone', 'geotagged', 'lat', 'lon', 'link', 'proj_notes', 'proj_notes2', 'include')]
 
 ## only keep approved / relevant ones
 misc <- misc[misc$include == 1,] 
 
-misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
-                                  data=data.frame(misc),
-                                  proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
-plot(misc.spdf)
+#misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
+#                                  data=data.frame(misc),
+#                                  proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+#plot(misc.spdf)
 
 ## keep only those in AOI
-misc.spdf <- misc.spdf[aoi_utm,]
+#misc.spdf <- misc.spdf[aoi_utm,]
 
-writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/Observations/MISC_cleaned_061616', driver = 'ESRI Shapefile')
-write.csv(misc, 'MISC_cleaned_061616.csv')
+#writeOGR(misc.spdf, dsn = '.', layer = 'Shapefiles/Observations/MISC_cleaned_061616', driver = 'ESRI Shapefile')
+#write.csv(misc, 'MISC_cleaned_061616.csv')
 
 #######################################################
 
@@ -142,102 +147,140 @@ erdo <- erdo[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer'
                 'documentation', 'obs_confidence', 'date_entered', 'source_comments')]
 
 ## plot
-erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
-                                    data=data.frame(erdo),
-                                    proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+#erdo.spdf <- SpatialPointsDataFrame(data.frame(erdo$utm_e, erdo$utm_n),
+#                                    data=data.frame(erdo),
+#                                    proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 
 ## crop to AOI
-erdo.spdf <- erdo.spdf[aoi_utm,]
+#erdo.spdf <- erdo.spdf[aoi_utm,]
 #erdo.spdf$name <- over(erdo.spdf, aoi)$NAME ##CRS issue?
 #erdo.spdf <- subset(erdo.spdf, name=="California")
 
-writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/Observations/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
-write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
+#writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/Observations/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
+#write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
 
 #######################################################
 
 ## CDFW records from Richard Callas / Kathryn Purcell
 
-cdfw <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='CDFW_KP', verbose=TRUE)
-plot(cdfw)
+cdfw.shp <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='CDFW_KP', verbose=TRUE)
+plot(cdfw.shp)
 
-head(cdfw@data)
-colnames(cdfw@data) <- c('id', 'date', 'observer', 'species', 'tot_obs', 'info', 'type1', 'type2')
-cdfw@data$date <- as.Date(cdfw@data$date, '%m/%d/%Y')
-cdfw@data$source <- rep('CDFW', nrow(cdfw@data))
-cdfw@data$id <- paste('CDFW', 1:nrow(cdfw), sep = '')
+## made data frame with attributes & coordinates
+cdfw <- data.frame(cdfw.shp@data, cdfw.shp@coords)
+head(cdfw)
+colnames(cdfw) <- c('id', 'date', 'observer', 'species', 'tot_obs', 'info', 'type1', 'type2', 'utm_e', 'utm_n')
 
-cdfw@data$type <- rep(NA, nrow(cdfw@data))
-cdfw@data$type[cdfw@data$type1 == 'Alive'] <- 'sighting'
-cdfw@data$type[cdfw@data$type1 == 'Dead'] <- 'carcass'
-cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Road Kill'] <- 'roadkill'
-cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Shot'] <- 'killed'
+## clean up
+cdfw$date <- as.Date(cdfw$date, '%m/%d/%Y')
+cdfw$year <- year(cdfw$date)
+cdfw$source <- rep('CDFW', nrow(cdfw))
+cdfw$id <- paste('CDFW', 1:nrow(cdfw), sep = '')
+
+cdfw$type <- rep(NA, nrow(cdfw))
+cdfw$type[cdfw$type1 == 'Alive'] <- 'sighting'
+cdfw$type[cdfw$type1 == 'Dead'] <- 'carcass'
+cdfw$type[cdfw$type1 == 'Dead' & cdfw$type2 == 'Road Kill'] <- 'roadkill'
+cdfw$type[cdfw$type1 == 'Dead' & cdfw$type2 == 'Shot'] <- 'killed'
 
 ## some of these are camera or track/sign...
-cdfw@data[c(25:29, 43, 56), 10] <- 'camera'
-cdfw@data[c(78:80, 93, 95, 97, 101), 10] <- 'other_sign'
+cdfw$type[c(25:29, 43, 56)] <- 'camera'
+cdfw$type[c(78:80, 93, 95, 97, 101)] <- 'other_sign'
 
 ## one of these is duplicated in the ERDO database (from USFS NRIS): 'ERDO86'/'CDFW32'
-cdfw@data <- cdfw@data[-30,] 
+cdfw <- cdfw[-32,] 
 
 ## decade
-cdfw@data$decade <- rep(NA, nrow(cdfw@data))
-cdfw@data$decade[cdfw@data$date > '1990-01-01' & cdfw@data$date < '2000-01-01'] <- '1990s'
-cdfw@data$decade[cdfw@data$date > '2000-01-01' & cdfw@data$date < '2010-01-01'] <- '2000s'
-cdfw@data$decade[cdfw@data$date > '2010-01-01' & cdfw@data$date < '2020-01-01'] <- '2010s'
+cdfw$decade <- rep(NA, nrow(cdfw))
+cdfw$decade[cdfw$date > '1990-01-01' & cdfw$date < '2000-01-01'] <- '1990s'
+cdfw$decade[cdfw$date > '2000-01-01' & cdfw$date < '2010-01-01'] <- '2000s'
+cdfw$decade[cdfw$date > '2010-01-01' & cdfw$date < '2020-01-01'] <- '2010s'
 
 ## reorder
-cdfw@data <- cdfw@data[,c('source', 'id', 'type', 'date', 'decade', 'observer', 'info',
-                          'species', 'tot_obs', 'type1', 'type2')]
+cdfw <- cdfw[,c('source', 'id', 'type', 'date', 'year', 'decade', 'observer', 'utm_e', 'utm_n',
+                'info', 'species', 'tot_obs', 'type1', 'type2')]
 
 ## crop to AOI
-proj4string(aoi_utm) <- proj4string(cdfw)
-cdfw <- cdfw[aoi_utm,]
+#proj4string(aoi_utm) <- proj4string(cdfw)
+#cdfw <- cdfw[aoi_utm,]
 
-writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/Observations/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
-write.csv(cdfw, 'Spreadsheets/CDFW_cleaned_061616.csv')
+#writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/Observations/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
+#write.csv(cdfw, 'Spreadsheets/CDFW_cleaned_061616.csv')
 
 #######################################################
 
 ## And Yocom
 
-yocom <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='Yocom', verbose=TRUE)
-plot(yocom)
+yocom.shp <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='Yocom', verbose=TRUE)
+plot(yocom.shp)
 
-head(yocom@data)
-colnames(yocom@data) <- c('id', 'date', 'type1', 'year', 'observer', 'source', 'county',
-                         'location', 'info')
+## made data frame with attributes & coordinates
+yocom <- data.frame(yocom.shp@data, yocom.shp@coords)
+head(yocom)
+colnames(yocom) <- c('id', 'year1', 'type1', 'year', 'observer', 'source', 'county',
+                         'location', 'info', 'utm_e', 'utm_n')
 ## clean up
-yocom@data$id <- paste('YOC', 1:nrow(yocom@data), sep = '')
-yocom@data$type <- rep('NA', nrow(yocom@data))
-yocom@data$type[yocom@data$type1 == 'Sighting'] <- 'sighting'
-yocom@data$type[yocom@data$type1 == 'Roadkil' | yocom@data$type1 == 'Roadkill'] <- 'roadkill'
-yocom@data$type[yocom@data$type1 == 'Carcass'] <- 'carcass'
-yocom@data$type[yocom@data$type1 == 'Killed' | yocom@data$type1 == 'Shot' | yocom@data$type1 == 'Trapped'] <- 'killed'
-yocom@data$type[yocom@data$type1 == 'unknown' | yocom@data$type1 == 'no data'] <- 'unk'
+yocom$id <- paste('YOC', 1:nrow(yocom), sep = '')
+yocom$type <- rep('NA', nrow(yocom))
+yocom$type[yocom$type1 == 'Sighting'] <- 'sighting'
+yocom$type[yocom$type1 == 'Roadkil' | yocom$type1 == 'Roadkill'] <- 'roadkill'
+yocom$type[yocom$type1 == 'Carcass'] <- 'carcass'
+yocom$type[yocom$type1 == 'Killed' | yocom$type1 == 'Shot' | yocom$type1 == 'Trapped'] <- 'killed'
+yocom$type[yocom$type1 == 'unknown' | yocom$type1 == 'no data'] <- 'unk'
 
 ## add decade
-yocom@data$decade <- rep('NA', nrow(yocom@data))
-yocom@data$decade[yocom@data$year >= 1900 & yocom@data$year < 1910] <- '1900s'
-yocom@data$decade[yocom@data$year >= 1910 & yocom@data$year < 1920] <- '1910s'
-yocom@data$decade[yocom@data$year >= 1920 & yocom@data$year < 1930] <- '1920s'
-yocom@data$decade[yocom@data$year >= 1930 & yocom@data$year < 1940] <- '1930s'
-yocom@data$decade[yocom@data$year >= 1940 & yocom@data$year < 1950] <- '1940s'
-yocom@data$decade[yocom@data$year >= 1950 & yocom@data$year < 1960] <- '1950s'
-yocom@data$decade[yocom@data$year >= 1960 & yocom@data$year < 1970] <- '1960s'
+yocom$decade <- rep('NA', nrow(yocom))
+yocom$decade[yocom$year >= 1900 & yocom$year < 1910] <- '1900s'
+yocom$decade[yocom$year >= 1910 & yocom$year < 1920] <- '1910s'
+yocom$decade[yocom$year >= 1920 & yocom$year < 1930] <- '1920s'
+yocom$decade[yocom$year >= 1930 & yocom$year < 1940] <- '1930s'
+yocom$decade[yocom$year >= 1940 & yocom$year < 1950] <- '1940s'
+yocom$decade[yocom$year >= 1950 & yocom$year < 1960] <- '1950s'
+yocom$decade[yocom$year >= 1960 & yocom$year < 1970] <- '1960s'
 
 ## reorder
-yocom@data <- yocom@data[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer',
-                            'info', 'type1', 'county', 'year')]
+yocom <- yocom[,c('source', 'id', 'type', 'year', 'decade', 'location', 'observer', 'utm_e', 'utm_n',
+                  'info', 'type1', 'county', 'year1')]
 
-writeOGR(yocom, dsn = '.', layer = 'Shapefiles/Observations/Yocom_cleaned_061616', driver = 'ESRI Shapefile')
-write.csv(yocom, 'Spreadsheets/Yocom_cleaned_061616.csv')
+#writeOGR(yocom, dsn = '.', layer = 'Shapefiles/Observations/Yocom_cleaned_061616', driver = 'ESRI Shapefile')
+#write.csv(yocom, 'Spreadsheets/Yocom_cleaned_061616.csv')
 
 ## don't need to crop (all within AOI)
 
 ###################################################################
 
-## Can I merge them all here instead of in ArcMap? 
-## "merge" doesn't work well because they all have different attributes
-## would be easier to make figuers if they were merged (could sort by decade, type, etc.
-## instead of doing it for each shapefile separately)
+## Merge these 5 before adding GBIF
+library(dplyr)
+
+no_gbif <- bind_rows(pf, misc, cdfw, erdo, yocom)
+
+## import GBIF
+gbif.shp <- readOGR(dsn = 'Shapefiles/Observations', layer = 'GBIF_061616_proj', verbose = TRUE)
+
+## make DF
+gbif <- data.frame(gbif.shp@data, gbif.shp@coords)
+
+## manipulate columns etc.
+colnames(gbif)[colnames(gbif) == 'type'] <- 'type_gbif'
+colnames(gbif)[colnames(gbif) == 'type_nw'] <- 'type'
+colnames(gbif)[colnames(gbif) == 'coords.x1'] <- 'utm_e'
+colnames(gbif)[colnames(gbif) == 'coords.x2'] <- 'utm_n'
+gbif$month <- as.character(gbif$month) # sloppy but will be compatible with other dataframe
+
+## combine all into DF
+all_obs <- bind_rows(no_gbif, gbif)
+
+## make SPDF
+all_obs_sp <- SpatialPointsDataFrame(data.frame(all_obs$utm_e, all_obs$utm_n),
+                                     data=data.frame(all_obs),
+                                     proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+plot(all_obs_sp)
+
+## crop to AOI
+aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
+aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83')) ## b/c all obs are UTM, NAD83
+final_obs <- all_obs_sp[aoi_utm,]
+
+writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_061716', driver='ESRI Shapefile') 
+write.csv(final_obs, 'Spreadsheets/all_obs_final_061716.csv') 
+
