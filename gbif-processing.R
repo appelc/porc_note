@@ -44,18 +44,18 @@ gbif.pts$year[55] <- 1959
 gbif.pts$year[56] <- 1920
 gbif.pts$year[57] <- 1939
 gbif.pts$year[58] <- 1929
-gbif.pts$decade[gbif.pts$year > 1900 & gbif.pts$year < 1910] <- '1900s'
-gbif.pts$decade[gbif.pts$year > 1910 & gbif.pts$year < 1920] <- '1910s'
-gbif.pts$decade[gbif.pts$year > 1920 & gbif.pts$year < 1930] <- '1920s'
-gbif.pts$decade[gbif.pts$year > 1930 & gbif.pts$year < 1940] <- '1930s'
-gbif.pts$decade[gbif.pts$year > 1940 & gbif.pts$year < 1950] <- '1940s'
-gbif.pts$decade[gbif.pts$year > 1950 & gbif.pts$year < 1960] <- '1950s'
-gbif.pts$decade[gbif.pts$year > 1960 & gbif.pts$year < 1970] <- '1960s'
-gbif.pts$decade[gbif.pts$year > 1970 & gbif.pts$year < 1980] <- '1970s'
-gbif.pts$decade[gbif.pts$year > 1980 & gbif.pts$year < 1990] <- '1980s'
-gbif.pts$decade[gbif.pts$year > 1990 & gbif.pts$year < 2000] <- '1990s'
-gbif.pts$decade[gbif.pts$year > 2000 & gbif.pts$year < 2010] <- '2000s'
-gbif.pts$decade[gbif.pts$year > 2010 & gbif.pts$year < 2020] <- '2010s'
+gbif.pts$decade[gbif.pts$year >= 1900 & gbif.pts$year < 1910] <- '1900s'
+gbif.pts$decade[gbif.pts$year >= 1910 & gbif.pts$year < 1920] <- '1910s'
+gbif.pts$decade[gbif.pts$year >= 1920 & gbif.pts$year < 1930] <- '1920s'
+gbif.pts$decade[gbif.pts$year >= 1930 & gbif.pts$year < 1940] <- '1930s'
+gbif.pts$decade[gbif.pts$year >= 1940 & gbif.pts$year < 1950] <- '1940s'
+gbif.pts$decade[gbif.pts$year >= 1950 & gbif.pts$year < 1960] <- '1950s'
+gbif.pts$decade[gbif.pts$year >= 1960 & gbif.pts$year < 1970] <- '1960s'
+gbif.pts$decade[gbif.pts$year >= 1970 & gbif.pts$year < 1980] <- '1970s'
+gbif.pts$decade[gbif.pts$year >= 1980 & gbif.pts$year < 1990] <- '1980s'
+gbif.pts$decade[gbif.pts$year >= 1990 & gbif.pts$year < 2000] <- '1990s'
+gbif.pts$decade[gbif.pts$year >= 2000 & gbif.pts$year < 2010] <- '2000s'
+gbif.pts$decade[gbif.pts$year >= 2010 & gbif.pts$year < 2020] <- '2010s'
 
 gbif.spdf <- SpatialPointsDataFrame(data.frame(gbif.pts$lon, gbif.pts$lat),
                                     data=gbif.pts)
@@ -64,4 +64,4 @@ unique(gbif.pts$institutionCode)
 table(gbif.pts$institutionCode)
 
 writeOGR(gbif.spdf, dsn = '.', layer = 'Shapefiles/GBIF_061616', driver = 'ESRI Shapefile')
-write.csv(gbif.pts, "./Spreadsheets/gbif-subset-16jun2016.csv")
+write.csv(gbif.pts, "./Spreadsheets/gbif-subset-16jun2016-cleaned.csv")
