@@ -151,7 +151,7 @@ erdo.spdf <- erdo.spdf[aoi_utm,]
 #erdo.spdf$name <- over(erdo.spdf, aoi)$NAME ##CRS issue?
 #erdo.spdf <- subset(erdo.spdf, name=="California")
 
-writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
+writeOGR(erdo.spdf, dsn = '.', layer = 'Shapefiles/Observations/ERDO_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(misc, 'Spreadsheets/ERDO_cleaned_061616.csv')
 
 #######################################################
@@ -190,7 +190,7 @@ cdfw@data <- cdfw@data[,c('source', 'id', 'type', 'date', 'decade', 'observer', 
 proj4string(aoi_utm) <- proj4string(cdfw)
 cdfw <- cdfw[aoi_utm,]
 
-writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
+writeOGR(cdfw, dsn = '.', layer = 'Shapefiles/Observations/CDFW_cleaned_061616', driver = 'ESRI Shapefile')
 write.csv(cdfw, 'Spreadsheets/CDFW_cleaned_061616.csv')
 
 #######################################################
