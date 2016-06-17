@@ -171,6 +171,7 @@ cdfw@data$type <- rep(NA, nrow(cdfw@data))
 cdfw@data$type[cdfw@data$type1 == 'Alive'] <- 'sighting'
 cdfw@data$type[cdfw@data$type1 == 'Dead'] <- 'carcass'
 cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Road Kill'] <- 'roadkill'
+cdfw@data$type[cdfw@data$type1 == 'Dead' & cdfw@data$type2 == 'Shot'] <- 'killed'
 
 ## some of these are camera or track/sign...
 cdfw@data[c(25:29, 43, 56), 10] <- 'camera'
