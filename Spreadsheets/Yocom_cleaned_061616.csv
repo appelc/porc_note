@@ -1,0 +1,71 @@
+"","source","id","type","date","decade","location","observer","info","type1","county","year","coords.x1","coords.x2","optional"
+"1","Yocom","YOC1","unk",1966,"1960s",NA,NA,NA,"unknown","Del Norte",1965,425183.54489969,4637711.70402003,TRUE
+"2","Yocom","YOC2","killed",1965,"1960s","Ship Mountain Trail near Bear Basin Road R4E, T16N, S1","Jerry Lewis","One shot","Shot","Del Norte",1965,434848.131313629,4628572.94315592,TRUE
+"3","Yocom","YOC3","killed",1965,"1960s","Near Doe Flat near Del NOrte-Siskiyou County Line, R 4E, T 16N, Sect. 7","Jerry Lewis","One shot","Shot","Del Norte",1965,441270.248840883,4627421.11052726,TRUE
+"4","Yocom","YOC4","sighting",1965,"1960s","Fox Ridge, R 3E, T 15N, S 7","William Stevens","Two seen on trail","Sighting","Del Norte",1965,429300.815769734,4623874.52396639,TRUE
+"5","Yocom","YOC5","sighting",1965,"1960s","Fox Ridge, R 3E, T 15N, S 7","William Stevens","Two seen on trail","Sighting","Del Norte",1965,426847.204662576,4624096.06539478,TRUE
+"6","Yocom","YOC6","killed",1966,"1960s","Base Creek-Knopki Creek junction, R4E T18N at corners of sect 14, 15, 18, 19","Jerry Lewis",NA,"Shot","Del Norte",1966,428869.590940159,4620250.0324042,TRUE
+"7","Yocom","YOC7","sighting",1963,"1960s","R 2E, T 15N, Sect. 7","William and Robert Stevens","One crossed road","Sighting","Del Norte",1963,422833.831173748,4621015.96087781,TRUE
+"8","Yocom","YOC8","carcass",1961,"1960s","Friday Ridge Road near Brush Mt. SW of Willow Creek","Richard Ridenhour",NA,"Carcass","Humboldt",1961,446127.785526922,4528649.29093418,TRUE
+"9","Yocom","YOC9","unk",1961,"1960s",NA,NA,NA,"unknown","Humboldt",1961,427932.536761853,4536834.85965914,TRUE
+"10","Yocom","YOC10","sighting",1961,"1960s",NA,"O. E. Larochelle",NA,"Sighting","Humboldt",1961,433494.870036504,4510467.70384025,TRUE
+"11","Yocom","YOC11","killed",1961,"1960s","9 mi. SE of Harris at Jewett Rock","William Drewry",NA,"Shot","Mendocino",1961,445888.739622772,4424948.869358,TRUE
+"12","Yocom","YOC12","killed",1961,"1960s","Wilson shot 50 per year","Charles Wilson",NA,"Shot","Mendocino",1961,467223.274300106,4422164.11125178,TRUE
+"13","Yocom","YOC13","killed",1961,"1960s","Shubeck Ridge","Charles Wilson",NA,"Shot","Mendocino",1961,470524.967255321,4424119.05451945,TRUE
+"14","Yocom","YOC14","sighting",1961,"1960s","Between Mina and Covelo","William Drewry",NA,"Sighting","Mendocino",1961,470736.989362764,4418790.74573068,TRUE
+"15","Yocom","YOC15","killed",1961,"1960s","N of Covelo","Charles Wilson",NA,"Trapped","Mendocino",1961,470999.87620129,4416549.55010998,TRUE
+"16","Yocom","YOC16","roadkill",1961,"1960s","1 mile north of Arcata on U.S. Highway 101",NA,NA,"Roadkill","Humboldt",1961,403765.52101516,4528362.67204898,TRUE
+"17","Yocom","YOC17","sighting",1960,"1960s","Under porch in town of Smith River","Willis Height","found by dog","Sighting","Del Norte",1960,406233.483593771,4642902.99661768,TRUE
+"18","Yocom","YOC18","sighting",1960,"1960s","In redwoods, Turwar Creek drainage","Cal Fish and Game personell",NA,"Sighting","Del Norte",1960,416400.567076189,4606950.36646459,TRUE
+"19","Yocom","YOC19","sighting",1958,"1950s","Prairie Creek State Park","Dale Crane","spruce grove along the beach at the mouth of Butler Creek","Sighting","Humboldt",1958,412003.115672966,4587440.12806334,TRUE
+"20","Yocom","YOC20","unk",1958,"1950s",NA,NA,NA,"no data","Humboldt",1958,407218.05660126,4566013.30746611,TRUE
+"21","Yocom","YOC21","sighting",1960,"1960s","Crossing 101 at Big Lagoon","Darrell Card",NA,"Sighting","Humboldt",1960,406143.192272008,4557147.43454926,TRUE
+"22","Yocom","YOC22","sighting",1960,"1960s","Patrick's Point State Park by wedding rock","Charles E. Doll",NA,"Sighting","Humboldt",1960,402489.462070796,4554774.62944554,TRUE
+"23","Yocom","YOC23","unk",1960,"1960s",NA,NA,NA,"unknown","Humboldt",1960,402699.936087232,4551570.52459506,TRUE
+"24","Yocom","YOC24","roadkill",1960,"1960s","1 mi. E of Redwood Creek on hwy 299","Cal Fish and Game personell",NA,"Roadkill","Humboldt",1960,428716.75703654,4529309.97214616,TRUE
+"25","Yocom","YOC25","sighting",1960,"1960s","3 mi. S of hwy 299",NA,NA,"Sighting","Humboldt",1960,428282.32635597,4525809.23247823,TRUE
+"26","Yocom","YOC26","roadkill",1960,"1960s","Redwood Creek on 299",NA,NA,"Roadkill","Humboldt",1960,422951.422102306,4527686.9509185,TRUE
+"27","Yocom","YOC27","roadkill",1960,"1960s","Chezem Bros. Ranch on 299","Roy Killion",NA,"Roadkill","Humboldt",1960,412265.630393317,4528775.22549831,TRUE
+"28","Yocom","YOC28","roadkill",1958,"1950s","S of Maple Creek in Big Bend area of Mad River drainage","Cal Fish and Game personell",NA,"Roadkill","Humboldt",1958,425231.051161282,4518339.5801216,TRUE
+"29","Yocom","YOC29","sighting",1960,"1960s","Grouse Mt. area",NA,"on ground in Douglas-fir stand","Sighting","Humboldt",1960,449487.944429564,4518162.5839353,TRUE
+"30","Yocom","YOC30","roadkill",1956,"1950s","Hwy 101 and Highrock Rd.","Jack Cullmber","(old hwy 101?)","Roadkill","Humboldt",1956,441472.162559585,4514968.58164692,TRUE
+"31","Yocom","YOC31","sighting",1956,"1950s","T5N, R4E, S27 Panther Creek Area","Anon",NA,"Sighting","Humboldt",1956,439687.439931397,4513955.31248415,TRUE
+"32","Yocom","YOC32","roadkill",1959,"1950s","Maple Creek area","Guy B. Kerr",NA,"Roadkill","Humboldt",1959,432160.513763127,4518158.62267413,TRUE
+"33","Yocom","YOC33","roadkill",1959,"1950s","Maple Creek area","Guy B. Kerr",NA,"Roadkill","Humboldt",1959,432484.64752132,4516015.51567489,TRUE
+"34","Yocom","YOC34","roadkill",1959,"1950s","Maple Creek area","Guy B. Kerr",NA,"Roadkil","Humboldt",1959,429925.058614576,4518008.28295229,TRUE
+"35","Yocom","YOC35","roadkill",1959,"1950s","Maple Creek area","Guy B. Kerr",NA,"Roadkill","Humboldt",1959,430420.441335373,4515863.40240699,TRUE
+"36","Yocom","YOC36","sighting",1959,"1950s","Maple Creek area","Guy B. Kerr","in tanoak tree","Sighting","Humboldt",1959,428007.040736594,4518112.30612861,TRUE
+"37","Yocom","YOC37","sighting",1959,"1950s","Snow Camp Lake","M. J. McHugh",NA,"Sighting","Humboldt",1959,428385.891213717,4515825.73492366,TRUE
+"38","Yocom","YOC38","unk",1958,"1950s",NA,NA,NA,"unknown","Humboldt",1958,425207.393481442,4515999.8856127,TRUE
+"39","Yocom","YOC39","unk",1958,"1950s",NA,NA,NA,"unknown","Humboldt",1958,423529.28153004,4517187.10553312,TRUE
+"40","Yocom","YOC40","sighting",1960,"1960s","4 mi. S of 299 on Redwood Creek","Thomas Harper",NA,"Sighting","Humboldt",1960,429292.848521028,4511791.72478743,TRUE
+"41","Yocom","YOC41","sighting",1960,"1960s","Kerr Ranch area, Mad River drainage","M. J. McHugh",NA,"Sighting","Humboldt",1960,436447.763945968,4507099.50884159,TRUE
+"42","Yocom","YOC42","unk",1956,"1950s",NA,NA,NA,"unknown","Humboldt",1956,415248.242437687,4494384.41246101,TRUE
+"43","Yocom","YOC43","unk",1958,"1950s",NA,NA,NA,"unknown","Humboldt",1958,415281.628103865,4492265.54575431,TRUE
+"44","Yocom","YOC44","unk",1957,"1950s",NA,NA,NA,"unknown","Humboldt",1957,417321.203497965,4492156.74893886,TRUE
+"45","Yocom","YOC45","sighting",1959,"1950s","Grizzly Creek Redwoods State Park","Douglas W. Metcalf","location?","Sighting","Humboldt",1959,404471.009214757,4492052.6375512,TRUE
+"46","Yocom","YOC46","sighting",1959,"1950s","1 mi. north of Three Forks Summit","Cal Fish and Game personell",NA,"Sighting","Humboldt",1959,401797.683596829,4492058.7376585,TRUE
+"47","Yocom","YOC47","killed",1960,"1960s","Wildcat area south of Ferndale near the coast","Darrell Cussins",NA,"Shot","Humboldt",1960,388497.708852946,4488894.53918593,TRUE
+"48","Yocom","YOC48","sighting",1960,"1960s","Road between Ferndale and Petrolia near radar station","Ruth Elliott",NA,"Sighting","Humboldt",1960,390681.386049576,4488747.63401909,TRUE
+"49","Yocom","YOC49","carcass",1959,"1950s","Upper Bear River south of Scotia","Cal Fish and Game personell",NA,"Carcass","Humboldt",1959,404304.277911383,4467733.31114039,TRUE
+"50","Yocom","YOC50","killed",1960,"1960s","Buckeye Ridge SE of Petrolia","Calvin Stewart","5 killed","Killed","Humboldt",1960,384846.957927473,4466540.99547281,TRUE
+"51","Yocom","YOC51","roadkill",1959,"1950s","Franklin K. Lane Grove","Carl A. Anderson",NA,"Roadkill","Humboldt",1959,418517.608013016,4451347.14027661,TRUE
+"52","Yocom","YOC52","sighting",1960,"1960s","Hwy 36 quarter mile W of Trinity Co. line","Cal Fish and Game personell",NA,"Sighting","Humboldt",1960,449542.714216737,4478758.81230498,TRUE
+"53","Yocom","YOC53","roadkill",1959,"1950s","N of Phillipsville on hwy 101",NA,NA,"Roadkill","Humboldt",1959,424793.021286574,4458091.64672709,TRUE
+"54","Yocom","YOC54","sighting",1959,"1950s","A couple seen near Leggett (Standish-Hickey State Park and Skunk Springs)",NA,NA,"Sighting","Humboldt",1959,420242.313507486,4425174.2823661,TRUE
+"55","Yocom","YOC55","unk",1955,"1950s",NA,NA,NA,"unknown","Del Norte",1955,396108.939447922,4626332.72564466,TRUE
+"56","Yocom","YOC56","sighting",1951,"1950s","3/4 mi. N of New Harris Stoer","Wm. Drewry",NA,"Sighting","Humboldt",1951,434914.63375653,4515422.93548489,TRUE
+"57","Yocom","YOC57","sighting",1953,"1950s","Camp Bemis area, T1N R2E S2","Various","several seen by various people 1953-58","Sighting","Humboldt",1953,416389.984728265,4496260.46039192,TRUE
+"58","Yocom","YOC58","unk",1954,"1950s",NA,NA,NA,"unknown","Humboldt",1954,417345.653671335,4494360.84573234,TRUE
+"59","Yocom","YOC59","sighting",1955,"1950s","3 mi. W of Bridgeville on Bar W Ranch","David Crane","in Douglas-fir","Sighting","Humboldt",1955,411768.655304366,4494167.18694459,TRUE
+"60","Yocom","YOC60","unk",1955,"1950s",NA,NA,NA,"unknown","Humboldt",1955,409495.98674769,4493965.43952897,TRUE
+"61","Yocom","YOC61","sighting",1947,"1940s","Summit Valley Trail, 4000 ft., R 3E, T 14N","William Stevens","several living in knobcone pine","Sighting","Del Norte",1947,424728.27841831,4613170.09829126,TRUE
+"62","Yocom","YOC62","sighting",1941,"1940s","Redwood Creek Slope","Guy B. Kerr",NA,"Sighting","Humboldt",1941,436831.214971914,4515063.82461713,TRUE
+"63","Yocom","YOC63","killed",1945,"1940s","Maple Creek Slope","Guy B. Kerr","2 killed in pear tree","Killed","Humboldt",1945,434001.824544057,4512661.9955398,TRUE
+"64","Yocom","YOC64","sighting",1943,"1940s","6 mi. NW of Ruth",NA,"2 young at den in a rock pile on open bridge","Sighting","Trinity",1943,465306.635028525,4460523.72437045,TRUE
+"65","Yocom","YOC65","carcass",1930,"1930s","Ship Mountain Trail, R 4E, T 16N","William Stevens","several carcasses apparently killed by a cougar","Carcass","Del Norte",1930,436538.533555592,4625156.36332673,TRUE
+"66","Yocom","YOC66","sighting",1940,"1940s","Hidden Valley, T 1N, R 7E, S 28; about 8 mi. east of Mad River Guard Station","James Gilman","one seen","Sighting","Trinity",1940,469240.511281817,4479533.1869474,TRUE
+"67","Yocom","YOC67","sighting",1930,"1930s","Lassic Peak, 4000 ft elevation","Jack Albee","found by sheepdog","Sighting","Humboldt",1930,452649.969638396,4465200.3910594,TRUE
+"68","Yocom","YOC68","killed",1908,"1900s","Harrow Ranch, 5 miles north of Ettersburg","A. Henry Tosten",NA,"Trapped","Humboldt",1908,407209.629814817,4448367.85020753,TRUE
+"69","Yocom","YOC69","killed",1951,"1950s","Maple Creek Slope","Guy B. Kerr",NA,"Trapped","Humboldt",1958,433844.122070967,4512716.20696547,TRUE
+"70","Yocom","YOC70","killed",1960,"1960s","Sea Lion Flat, 1 mi. S of Punta Gorda old lighthouse station","Walter Beatty",NA,"Killed","Humboldt",1960,386221.469896595,4455607.11817762,TRUE
