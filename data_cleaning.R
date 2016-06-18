@@ -26,11 +26,11 @@ pf$id <- paste('PF', 1:nrow(pf), sep = '')
 
 ## add decade
 pf$decade <- rep(NA, nrow(pf))
-pf$decade[pf$date > '1970-01-01' & pf$date < '1980-01-01'] <- '1970s'
-pf$decade[pf$date > '1980-01-01' & pf$date < '1990-01-01'] <- '1980s'
-pf$decade[pf$date > '1990-01-01' & pf$date < '2000-01-01'] <- '1990s'
-pf$decade[pf$date > '2000-01-01' & pf$date < '2010-01-01'] <- '2000s'
-pf$decade[pf$date > '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
+pf$decade[pf$date >= '1970-01-01' & pf$date < '1980-01-01'] <- '1970s'
+pf$decade[pf$date >= '1980-01-01' & pf$date < '1990-01-01'] <- '1980s'
+pf$decade[pf$date >= '1990-01-01' & pf$date < '2000-01-01'] <- '1990s'
+pf$decade[pf$date >= '2000-01-01' & pf$date < '2010-01-01'] <- '2000s'
+pf$decade[pf$date >= '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
 
 ## reorder
 pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 
@@ -75,9 +75,9 @@ misc$utm_zone <- as.character(misc$utm_zone)
 
 ## add decade
 misc$decade <- rep(NA, nrow(misc))
-misc$decade[misc$date > '1990-01-01' & misc$date < '2000-01-01'] <- '1990s'
-misc$decade[misc$date > '2000-01-01' & misc$date < '2010-01-01'] <- '2000s'
-misc$decade[misc$date > '2010-01-01' & misc$date < '2020-01-01'] <- '2010s'
+misc$decade[misc$date >= '1990-01-01' & misc$date < '2000-01-01'] <- '1990s'
+misc$decade[misc$date >= '2000-01-01' & misc$date < '2010-01-01'] <- '2000s'
+misc$decade[misc$date >= '2010-01-01' & misc$date < '2020-01-01'] <- '2010s'
 
 ## reorder
 misc <- misc[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 'utm_n', 'info',
@@ -192,9 +192,9 @@ cdfw <- cdfw[-32,]
 
 ## decade
 cdfw$decade <- rep(NA, nrow(cdfw))
-cdfw$decade[cdfw$date > '1990-01-01' & cdfw$date < '2000-01-01'] <- '1990s'
-cdfw$decade[cdfw$date > '2000-01-01' & cdfw$date < '2010-01-01'] <- '2000s'
-cdfw$decade[cdfw$date > '2010-01-01' & cdfw$date < '2020-01-01'] <- '2010s'
+cdfw$decade[cdfw$date >= '1990-01-01' & cdfw$date < '2000-01-01'] <- '1990s'
+cdfw$decade[cdfw$date >= '2000-01-01' & cdfw$date < '2010-01-01'] <- '2000s'
+cdfw$decade[cdfw$date >= '2010-01-01' & cdfw$date < '2020-01-01'] <- '2010s'
 
 ## reorder
 cdfw <- cdfw[,c('source', 'id', 'type', 'date', 'year', 'decade', 'observer', 'utm_e', 'utm_n',
