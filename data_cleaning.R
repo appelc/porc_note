@@ -270,16 +270,29 @@ gbif$month <- as.character(gbif$month) # sloppy but will be compatible with othe
 ## combine all into DF
 all_obs <- bind_rows(no_gbif, gbif)
 
+## collapse some types
+all_obs$type_new[all_obs$type == 'sighting' | all_obs$type == 'general'] <- 'sighting'
+all_obs$type_new[all_obs$type == 'roadkill'] <- 'roadkill'
+all_obs$type_new[all_obs$type == 'carcass'] <- 'carcass'
+all_obs$type_new[all_obs$type == 'dog'] <- 'dog encounter'
+all_obs$type_new[all_obs$type == 'track' | all_obs$type == 'other_sign'] <- 'track or sign'
+all_obs$type_new[all_obs$type == 'camera'] <- 'remote camera'
+all_obs$type_new[all_obs$type == 'killed'] <- 'killed'
+all_obs$type_new[all_obs$type == 'unk'] <- 'unknown'
+all_obs$type_new[all_obs$type == 'specimen'] <- 'museum specimen'
+
 ## make SPDF
 all_obs_sp <- SpatialPointsDataFrame(data.frame(all_obs$utm_e, all_obs$utm_n),
                                      data=data.frame(all_obs),
                                      proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
-plot(all_obs_sp)
 
 ## crop to AOI
 aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
 aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83')) ## b/c all obs are UTM, NAD83
 final_obs <- all_obs_sp[aoi_utm,]
+
+plot(final_obs)
+plot(aoi_utm, add = TRUE)
 
 writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_061716', driver='ESRI Shapefile') 
 write.csv(final_obs, 'Spreadsheets/all_obs_final_061716.csv') 
