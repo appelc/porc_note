@@ -2,8 +2,8 @@
 ## Import Porcufinder records from Google Drive
 
 library(googlesheets)
-library(rgdal)
-library(lubridate)
+library(rgdal) 
+library(lubridate) ## for extracting year from dates/posix
 
 gs_ls()
 porcufinder <- gs_title("Porcupines (Responses)")
@@ -297,3 +297,28 @@ plot(aoi_utm, add = TRUE)
 writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_061716', driver='ESRI Shapefile') 
 write.csv(final_obs, 'Spreadsheets/all_obs_final_061716.csv') 
 
+########################################
+
+## summarize observations by source, etc.
+
+unique(final_obs$source)
+pf_no <- length(final_obs[final_obs$source == 'PF'])
+flickr_no <- nrow(final_obs[final_obs$source == 'FLICKR'])
+
+##  by source
+table(final_obs$source) ## primary source (DFW, ERDO, FLICKR, GBIF, INAT, PF, YOCOM)
+table(final_obs$source2) ## secondary source within ERDO (CROS, USFS NRIS, misc.)
+table(final_obs$instttC) ## institution codes within GBIF (CAS, MVZ, etc.)
+
+## by type
+table(final_obs$type) ## detailed
+table(final_obs$type_new) ## general
+
+## by county
+counties <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_counties_AOI', verbose = TRUE)
+proj4string(counties) <- proj4string(final_obs)
+final_obs$county <- over(final_obs, counties)$NAME 
+table(final_obs$county)
+
+plot(final_obs@data$year, final_obs@data$type)
+hist(final_obs$year)
