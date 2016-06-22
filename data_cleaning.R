@@ -20,6 +20,9 @@ pf$posix <- as.POSIXct(strptime(pf$date, "%m/%d/%Y %H:%M:%S"), tz="America/Los_A
 pf$date <- as.Date(pf$posix, '%Y-%m-%d', tz = 'America/Los_Angeles')
 pf$year <- year(pf$date)
 
+## keep only credibility 2 (reliable description) or 3 (photos/video)
+pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
+
 ## clean up a little bit
 pf$source <- rep('PF', nrow(pf))
 pf$id <- paste('PF', 1:nrow(pf), sep = '')
@@ -35,9 +38,6 @@ pf$decade[pf$date >= '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
 ## reorder
 pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 
             'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility', 'posix')] 
-
-## keep only credibility 2 (reliable description) or 3 (photos/video)
-pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
 
 ## plot
 #pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
@@ -66,11 +66,13 @@ misc$utm_n <- as.numeric(misc$utm_n)
 misc$date <- as.Date(misc$date, '%m/%d/%Y')
 misc$year <- year(misc$date)
 
+## only keep approved / relevant ones
+misc <- misc[misc$include == 1,] 
+
 ## clean up a little
-misc$source[misc$source == 'Flickr'] <- 'FLICKR'
-misc$source[misc$source == 'iNaturalist'] <- 'INAT'
-misc$id[misc$source == 'FLICKR'] <- paste('FLICKR', 1:6, sep = '')
-misc$id[misc$source == 'INAT'] <- paste('INAT', 1:7, sep = '') ## combine these rows?
+misc$source2 <- misc$source
+misc$source <- rep('MISC', nrow(misc))
+misc$id <- paste('MISC', 1:nrow(misc), sep = '')
 misc$utm_zone <- as.character(misc$utm_zone)
 
 ## add decade
@@ -80,11 +82,8 @@ misc$decade[misc$date >= '2000-01-01' & misc$date < '2010-01-01'] <- '2000s'
 misc$decade[misc$date >= '2010-01-01' & misc$date < '2020-01-01'] <- '2010s'
 
 ## reorder
-misc <- misc[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 'utm_n', 'info',
+misc <- misc[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 'utm_n', 'info', 'source2',
                 'utm_zone', 'geotagged', 'lat', 'lon', 'link', 'proj_notes', 'proj_notes2', 'include')]
-
-## only keep approved / relevant ones
-misc <- misc[misc$include == 1,] 
 
 #misc.spdf <- SpatialPointsDataFrame(data.frame(misc$utm_e, misc$utm_n),
 #                                  data=data.frame(misc),
@@ -116,14 +115,24 @@ erdo$utm_n <- as.numeric(erdo$utm_n)
 erdo$date <- as.Date(erdo$date, '%m/%d/%Y')
 
 ## clean up a little
-erdo$id <- paste('ERDO', 1:nrow(erdo), sep = '')
 erdo$type <- rep(NA, nrow(erdo))
+erdo$source <- 'MISC'
+erdo$source[erdo$source2 == 'CROS'] <- 'CROS'
+erdo$source[erdo$source2 == 'USFS NRIS'] <- 'NRIS'
+
+erdo$id[erdo$source == 'MISC'] <- paste('MISC', (nrow(misc) + 1):(length(which(erdo$source == 'MISC')) + nrow(misc)), sep = '')
+erdo$id[erdo$source == 'CROS'] <- paste('CROS', 1:(length(which(erdo$source == 'CROS'))), sep = '')
+erdo$id[erdo$source == 'NRIS'] <- paste('NRIS', 1:length(which(erdo$source == 'NRIS')), sep = '')
+
 erdo$type[erdo$type1 == 'Sign' | erdo$type1 == 'Excrement' | erdo$type1 == 'Other sign' | erdo$type1 == 'Other'] <- 'other_sign'
 erdo$type[erdo$type1 == 'Sighting'] <- 'sighting'
 erdo$type[erdo$type1 == 'Roadkill'] <- 'roadkill'
 erdo$type[erdo$type1 == 'Carcass'] <- 'carcass'
 erdo$type[erdo$type1 == 'Camera'] <- 'camera'
 erdo$type[erdo$type1 == 'Track'] <- 'track'
+
+## one should be a dog encounter
+erdo$type[1] <- 'dog encounter'
 
 ## add decade
 erdo$decade <- rep(NA, nrow(erdo))
@@ -266,9 +275,22 @@ colnames(gbif)[colnames(gbif) == 'type_nw'] <- 'type'
 colnames(gbif)[colnames(gbif) == 'coords.x1'] <- 'utm_e'
 colnames(gbif)[colnames(gbif) == 'coords.x2'] <- 'utm_n'
 gbif$month <- as.character(gbif$month) # sloppy but will be compatible with other dataframe
+gbif$source2 <- gbif$instttC
 
 ## combine all into DF
 all_obs <- bind_rows(no_gbif, gbif)
+
+# Now check for duplicates
+dups <- duplicated(all_obs[ , c('utm_e', 'utm_n')]) # Finds duplicates in utms
+dups.all_obs <- all_obs[dups,] # Create table with duplicates only
+
+non.dups <- all_obs[!dups.all_obs,] ## Now remove the duplicates; "non.dups" is our new data name
+
+dups.all_obs <- SpatialPointsDataFrame(data.frame(dups.all_obs$utm_e, dups.all_obs$utm_n),
+                                     data=data.frame(dups.all_obs),
+                                     proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
+
+writeOGR(dups.all_obs, dsn = '.', layer = 'Shapefiles/Observations/dups', driver = 'ESRI Shapefile')
 
 ## collapse some types
 all_obs$type_new[all_obs$type == 'sighting' | all_obs$type == 'general'] <- 'sighting'
@@ -313,6 +335,10 @@ table(final_obs$instttC) ## institution codes within GBIF (CAS, MVZ, etc.)
 ## by type
 table(final_obs$type) ## detailed
 table(final_obs$type_new) ## general
+
+## matrix (source and type)
+table(final_obs$source, final_obs$type_new)
+table(final_obs$source2, final_obs$type_new)
 
 ## by county
 counties <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_counties_AOI', verbose = TRUE)
