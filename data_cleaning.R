@@ -39,6 +39,10 @@ pf$decade[pf$date >= '2010-01-01' & pf$date < '2020-01-01'] <- '2010s'
 pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'observer', 'utm_e', 
             'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility', 'posix')] 
 
+## any duplicates? there shouldn't be
+dups <- duplicated(pf[ , c('utm_e', 'utm_n')]) 
+dups_pf <- pf[dups,] ## good, no dups
+
 ## plot
 #pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
 #                               data=data.frame(pf),
@@ -113,6 +117,13 @@ colnames(erdo) <- c('source', 'id', 'type1', 'year', 'month', 'date', 'county', 
 erdo$utm_e <- as.numeric(erdo$utm_e)
 erdo$utm_n <- as.numeric(erdo$utm_n)
 erdo$date <- as.Date(erdo$date, '%m/%d/%Y')
+
+## there are 5 duplicates in here that are also in GBIF. they won't show up as dups because the coords
+## are slightly different (UTM here, lat/lon in GBIF and rounded differently)
+erdo_dups <- erdo[erdo$info == 'UC BERKELEY MVZ DATA.  PRIVATE PROPERTY.' | erdo$info == 'UC BERKELEY MVZ DATA.',]
+erdo <- erdo[-c(28:32),] ## should be a better way but erdo <- erdo[!erdo_dups,] didn't work for data frames
+
+## remove dups before or after assigning IDs?
 
 ## clean up a little
 erdo$type <- rep(NA, nrow(erdo))
@@ -280,23 +291,19 @@ gbif$source2 <- gbif$instttC
 ## combine all into DF
 all_obs <- bind_rows(no_gbif, gbif)
 
-# Now check for duplicates
+## now check for duplicates
 dups <- duplicated(all_obs[ , c('utm_e', 'utm_n')]) # Finds duplicates in utms
 dups.all_obs <- all_obs[dups,] # Create table with duplicates only
-
-non.dups <- all_obs[!dups.all_obs,] ## Now remove the duplicates; "non.dups" is our new data name
-
-dups.all_obs <- SpatialPointsDataFrame(data.frame(dups.all_obs$utm_e, dups.all_obs$utm_n),
-                                     data=data.frame(dups.all_obs),
-                                     proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
-
-writeOGR(dups.all_obs, dsn = '.', layer = 'Shapefiles/Observations/dups', driver = 'ESRI Shapefile')
+## don't remove any of these duplicates. GBIF duplicates likely represent multiple specimens, and the
+## NRIS camera duplicate is outside the AOI anyway and will be excluded in the next step
+## Should have a better way of finding dups... see above for issue with NRIS/GBIF dups not having
+## identical coordinates. Others I just found on my own (e.g., a couple PF/ERDO, PF/CDFW, or ERDO/CDFW)
 
 ## collapse some types
 all_obs$type_new[all_obs$type == 'sighting' | all_obs$type == 'general'] <- 'sighting'
 all_obs$type_new[all_obs$type == 'roadkill'] <- 'roadkill'
 all_obs$type_new[all_obs$type == 'carcass'] <- 'carcass'
-all_obs$type_new[all_obs$type == 'dog'] <- 'dog encounter'
+all_obs$type_new[all_obs$type == 'dog' | all_obs$type == 'dog encounter'] <- 'dog encounter'
 all_obs$type_new[all_obs$type == 'track' | all_obs$type == 'other_sign'] <- 'track or sign'
 all_obs$type_new[all_obs$type == 'camera'] <- 'remote camera'
 all_obs$type_new[all_obs$type == 'killed'] <- 'killed'
@@ -316,20 +323,16 @@ final_obs <- all_obs_sp[aoi_utm,]
 plot(final_obs)
 plot(aoi_utm, add = TRUE)
 
-writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_061716', driver='ESRI Shapefile') 
-write.csv(final_obs, 'Spreadsheets/all_obs_final_061716.csv') 
+writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_062316', driver='ESRI Shapefile') 
+write.csv(final_obs, 'Spreadsheets/all_obs_final_062316.csv') 
 
 ########################################
 
-## summarize observations by source, etc.
-
-unique(final_obs$source)
-pf_no <- length(final_obs[final_obs$source == 'PF'])
-flickr_no <- nrow(final_obs[final_obs$source == 'FLICKR'])
+## summarize observations
 
 ##  by source
-table(final_obs$source) ## primary source (DFW, ERDO, FLICKR, GBIF, INAT, PF, YOCOM)
-table(final_obs$source2) ## secondary source within ERDO (CROS, USFS NRIS, misc.)
+table(final_obs$source) ## primary source (CDFW, CROS, GBIF, MISC, NRIS, PF, YOCOM)
+table(final_obs$source2) ## secondary source within ERDO (iNaturalist, Flickr, etc.)
 table(final_obs$instttC) ## institution codes within GBIF (CAS, MVZ, etc.)
 
 ## by type
@@ -337,8 +340,8 @@ table(final_obs$type) ## detailed
 table(final_obs$type_new) ## general
 
 ## matrix (source and type)
-table(final_obs$source, final_obs$type_new)
-table(final_obs$source2, final_obs$type_new)
+matrix <- table(final_obs$type_new, final_obs$source)
+write.csv(matrix, 'Spreadsheets/source_type_matrix_062316.csv')
 
 ## by county
 counties <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_counties_AOI', verbose = TRUE)
@@ -346,5 +349,4 @@ proj4string(counties) <- proj4string(final_obs)
 final_obs$county <- over(final_obs, counties)$NAME 
 table(final_obs$county)
 
-plot(final_obs@data$year, final_obs@data$type)
 hist(final_obs$year)
