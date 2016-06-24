@@ -1,0 +1,60 @@
+Rowid_,VALUE,COUNT,WHRNAME
+,1,6005235,Klamath Mixed Conifer
+,2,2167693,Red Fir
+,3,13612143,Douglas Fir
+,4,3846950,White Fir
+,5,587480,Montane Riparian
+,6,1203927,Perennial Grassland
+,7,4153911,Montane Chaparral
+,8,353292,Subalpine Conifer
+,9,1883439,Barren
+,10,708603,Wet Meadow
+,11,11931883,Annual Grassland
+,12,2501254,Urban
+,13,10084562,Montane Hardwood
+,14,8084412,Montane Hardwood-Conifer
+,15,4804543,Mixed Chaparral
+,16,3374998,Juniper
+,17,3381476,Ponderosa Pine
+,18,2552085,Lacustrine
+,19,4323243,Redwood
+,20,1252332,Pasture
+,21,515370,Coastal Scrub
+,22,45891,Marsh
+,23,3427269,Cropland
+,24,549130,Jeffrey Pine
+,25,360490,Riverine
+,26,596430,Closed-Cone Pine-Cypress
+,27,637267,Coastal Oak Woodland
+,28,412511,Lodgepole Pine
+,29,11738896,Sierran Mixed Conifer
+,30,9092668,Sagebrush
+,31,5113699,Eastside Pine
+,32,818517,Bitterbrush
+,33,2698195,Low Sage
+,34,1834015,Irrigated Hayfield
+,35,51422,Aspen
+,36,1305148,Chamise-Redshank Chaparral
+,37,808189,Dryland Grain Crops
+,38,4402,Estuarine
+,39,389577,Irrigated Row and Field Crops
+,40,569036,Irrigated Grain Crops
+,41,477499,Alkali Desert Scrub
+,42,1982640,Deciduous Orchard
+,43,595235,Vineyard
+,44,9567,Alpine-Dwarf Shrub
+,45,93095,Saline Emergent Wetland
+,46,476444,Fresh Emergent Wetland
+,47,393656,Valley Foothill Riparian
+,48,584330,Water
+,49,151367,Evergreen Orchard
+,50,2366278,Blue Oak-Foothill Pine
+,51,151490,Valley Oak Woodland
+,52,2513689,Rice
+,53,4554595,Blue Oak Woodland
+,54,53850,Eucalyptus
+,55,747,Desert Riparian
+,56,43172,Undetermined Shrub
+,57,18849,Undetermined Conifer
+,58,514,Undetermined Hardwood
+,59,18,Desert Scrub
