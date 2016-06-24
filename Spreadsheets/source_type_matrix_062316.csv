@@ -1,0 +1,11 @@
+,CDFW,CROS,GBIF,MISC,NRIS,PF,Yocom,TOTAL,,,,CDFW,Yocom,PF,GBIF,NRIS,CROS,MISC,TOTAL
+sighting,31,0,4,4,27,47,30,143,,,sighting,31,30,47,4,27,0,4,143
+roadkill,53,14,0,1,0,11,12,91,,,roadkill,53,12,11,0,0,14,1,91
+museum specimen,0,0,51,0,0,0,0,51,,,museum specimen,0,0,0,51,0,0,0,51
+track or sign,7,0,3,0,6,1,0,17,,,track or sign,7,0,1,3,6,0,0,17
+carcass,3,0,0,0,7,2,3,15,,,carcass,3,3,2,0,7,0,0,15
+killed,1,0,0,0,0,0,13,14,,,killed,1,13,0,0,0,0,0,14
+unknown,0,0,0,0,0,0,12,12,,,unknown,0,12,0,0,0,0,0,12
+remote camera,7,0,0,0,0,0,0,7,,,remote camera,7,0,0,0,0,0,0,7
+dog encounter,0,0,0,1,0,5,0,6,,,dog encounter,0,0,5,0,0,0,1,6
+,102,14,58,6,40,66,70,356,,,TOTAL,102,70,66,58,40,14,6,356
