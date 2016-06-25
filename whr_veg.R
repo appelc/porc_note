@@ -37,6 +37,29 @@ head(prop_used_type)
 
 ## need to add the rest of the WHR types with 0s
 
+## messy but works to reshape for ggplot
+avail.df <- data.frame(veg$WHRNAME, whr_type_key$code, veg$prop, rep('avail', nrow(veg)))
+colnames(avail.df) <- c('CWHRNAME', 'CWHRTYPE', 'prop', 'use_avail')
+
+prop_used_type$use_avail <- rep('use', nrow(prop_used_type))
+prop_used_type$CWHRNAME <- whr_type_key$name[match(prop_used_type$CWHRTYPE, whr_type_key$code)]
+  
+type.df <- bind_rows(avail.df, prop_used_type)
+
+## plot
+ggplot(type.df, aes(CWHRNAME, prop, fill = as.factor(use_avail))) +
+  geom_bar(position = 'dodge', stat = 'identity') + 
+  theme(axis.text.x = element_text(angle = 50, hjust = 1))
+
+write.csv(type.df, 'Spreadsheets/WHR/type_use_avail.csv')
+
+## easier way to read as a table
+avail.df$prop_avail <- avail.df$prop
+prop_used_type$prop_use <- prop_used_type$prop
+
+type.df2 <- avail.df[, c(1:2, 5)]
+type.df2$prop_use <- prop_used_type$prop_use[match(type.df2$CWHRTYPE, prop_used_type$CWHRTYPE)]
+type.df2[is.na(type.df2)] <- 0
 
 #################################################################3
 
@@ -87,9 +110,10 @@ colnames(form.df) <- c('life_form', 'use_avail', 'prop')
 
 ## plot
 ggplot(form.df, aes(life_form, prop, fill = as.factor(use_avail))) +
-      geom_bar(position = 'dodge', stat = 'identity')
+      geom_bar(position = 'dodge', stat = 'identity') +
+      theme(axis.text.x = element_text(angle = 50, hjust = 1))
 
-
+write.csv(form.df, 'Spreadsheets/WHR/form_use_avail.csv')
 
 
 
