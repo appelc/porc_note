@@ -61,7 +61,25 @@ type.df2 <- avail.df[, c(1:2, 5)]
 type.df2$prop_use <- prop_used_type$prop_use[match(type.df2$CWHRTYPE, prop_used_type$CWHRTYPE)]
 type.df2[is.na(type.df2)] <- 0
 
-#################################################################3
+## look at points by WHR type AND source
+whr.matrix <- table(veg_pts@data$WHRTYPE, veg_pts@data$source)
+whr.matrix <- as.data.frame.matrix(whr.matrix)
+colnames(whr.matrix) <- c('CWHRTYPE', 'source', 'freq')
+whr.matrix$WHRNAME <- whr_type_key$name[match(rownames(whr.matrix), whr_type_key$code)]
+write.csv(whr.matrix, 'Spreadsheets/WHR/type_source_matrix.csv')
+
+## also need the ones with 0 used though
+new.df <- data.frame(veg_pts@data$source, veg_pts@data$WHRTYPE)
+colnames(new.df) <- c('source', 'WHRTYPE')
+new.df$WHRNAME <- whr_type_key$name[match(new.df$WHRTYPE, whr_type_key$code)]
+whr.matrix.2 <- table(new.df$WHRNAME, new.df$source)
+whr.matrix.2 <- as.data.frame.matrix(whr.matrix)
+
+all.types
+all.types[,c(2:9)] <- whr.matrix.2[,c(1:8)][match(all.types$whr_type_key.name, rownames(whr.matrix.2)),]
+all.types$CDFW <- whr.matrix.2$CDFW[match(all.types$whr_type_key.name, rownames(whr.matrix.2)),]
+
+#################################################################
 
 ##### Second, use WHR TYPE
 
