@@ -4,6 +4,7 @@
 library(googlesheets)
 library(rgdal) 
 library(lubridate) ## for extracting year from dates/posix
+library(extrafont) ## for ggplot2
 
 gs_ls()
 porcufinder <- gs_title("Porcupines (Responses)")
@@ -349,4 +350,28 @@ proj4string(counties) <- proj4string(final_obs)
 final_obs$county <- over(final_obs, counties)$NAME 
 table(final_obs$county)
 
+## make a histogram by decade
 hist(final_obs$year)
+final_obs_df <- data.frame(final_obs@data) ## ggplot needs it as a data frame
+cols <- c('#67001F', '#B2182B', '#D6604D', '#F4606D', '#FDDBC7', '#F7F7F7', '#D1E5F0', '#92C5DE',
+          '#4393C3', '#2166AC', '#053061', '#001233') ## match colors to map
+font_import(pattern = '[A/a]rial')
+font_import(pattern = '[T/t]imes')
+loadfonts(device = 'win')
+
+ggplot(final_obs_df, aes(decade, fill = decade)) + geom_bar() + 
+      labs(x = 'Decade', y = 'Number of records') +
+      scale_fill_manual(values = cols) +
+      theme(axis.text = element_text(size = 12, colour = 'black', family = 'Arial'),
+            axis.text.x = element_text(angle = 50, hjust = 1),
+            axis.title = element_text(size = 14, colour = 'black', family = 'Arial'),
+            axis.line.x = element_line(size = 1, colour = 'black'),
+            axis.line.y = element_line(size = 1, colour = 'black'),
+            axis.ticks = element_line(size = 0.5, colour = 'black'),
+            axis.ticks.length = unit(.2, 'cm'),
+            panel.background = element_rect(fill = 'white'),
+            scale_y_continuous(breaks = c(0, 25, 50, 75, 100, 125, 150)),
+            legend.position = 'none')
+
+
+  
