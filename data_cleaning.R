@@ -5,6 +5,8 @@ library(googlesheets)
 library(rgdal) 
 library(lubridate) ## for extracting year from dates/posix
 library(extrafont) ## for ggplot2
+library(dplyr)
+library(ggplot2)
 
 gs_ls()
 porcufinder <- gs_title("Porcupines (Responses)")
@@ -22,6 +24,7 @@ pf$date <- as.Date(pf$posix, '%Y-%m-%d', tz = 'America/Los_Angeles')
 pf$year <- year(pf$date)
 
 ## keep only credibility 2 (reliable description) or 3 (photos/video)
+table(pf$credibility) ## check first for reporting
 pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
 
 ## clean up a little bit
@@ -41,8 +44,9 @@ pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'obser
             'utm_n', 'info', 'habitat', 'prev_sub', 'type_obs', 'proj_notes', 'credibility', 'posix')] 
 
 ## any duplicates? there shouldn't be
-dups <- duplicated(pf[ , c('utm_e', 'utm_n')]) 
-dups_pf <- pf[dups,] ## good, no dups
+## no, don't remove dups based on UTM... for example, the two Healdsburg camera obs. have the same UTM
+#dups <- duplicated(pf[ , c('utm_e', 'utm_n')]) 
+#dups_pf <- pf[dups,] ## good, no dups
 
 ## plot
 #pf.spdf <- SpatialPointsDataFrame(data.frame(pf$utm_e, pf$utm_n),
@@ -58,7 +62,40 @@ dups_pf <- pf[dups,] ## good, no dups
 #writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
 #write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
 
-#######################################################3
+#######################################################
+
+## Now get camera & track plate records from Bill and Ric
+surveys <- gs_title("CalSysSurveys")
+cameras <- data.frame(gs_read(ss=surveys, ws="Camera_ERDO", is.na(TRUE), range=cell_cols(1:44)))
+track_pl <- data.frame(gs_read(ss=surveys, ws="TrackPlate_ERDO", is.na(TRUE), range=cell_cols(1:50)))
+
+## format dates
+cameras$date <- as.Date(cameras$DatePhotoTaken, '%m/%d/%Y', tz = 'America/Los_Angeles')
+track_pl$date <- as.Date(track_pl$TPVisitDate, '%m/%d/%Y', tz = 'America/Los_Angeles')
+
+## only keep relevant columns
+cameras <- cameras[,c(2, 8, 11, 16:18, 24, 45)]
+track_pl <- track_pl[,c(3, 9, 12, 17:19, 25, 51)]
+
+cameras$source <- rep('WJZ05', nrow(cameras))
+cameras$type <- rep('camera', nrow(cameras))
+
+track_pl$source <- rep('WJZ05', nrow(track_pl))
+track_pl$type <- rep('track', nrow(track_pl))
+
+wjz05 <- bind_rows(cameras, track_pl)
+wjz05$id <- paste('WJZ05', 1:nrow(wjz05), sep = '_')
+wjz05$decade[wjz05$date >= '2000-01-01' & wjz05$date < '2010-01-01'] <- '2000s'
+wjz05$UtmZone <- as.character(wjz05$UtmZone)
+wjz05$source <- as.character(wjz05$source)
+wjz05$Year <- as.numeric(wjz05$Year)
+
+colnames(wjz05) <- c('location', 'SurveyingAgency', 'year', 'utm_zone', 'utm_e', 'utm_n', 'datum', 'date', 
+                     'source', 'type', 'id', 'decade')
+wjz05 <- wjz05[,c('source', 'id' ,'type', 'date', 'year', 'decade', 'location', 'utm_e', 'utm_n', 
+                  'utm_zone', 'datum', 'SurveyingAgency')]
+
+#######################################################
 
 ## Also get the Miscellaneous records
 
@@ -270,10 +307,8 @@ yocom <- yocom[,c('source', 'id', 'type', 'year', 'decade', 'location', 'observe
 
 ###################################################################
 
-## Merge these 5 before adding GBIF
-library(dplyr)
-
-no_gbif <- bind_rows(pf, misc, cdfw, erdo, yocom)
+## Merge these 6 before adding GBIF
+no_gbif <- bind_rows(pf, misc, cdfw, erdo, yocom, wjz05)
 
 ## import GBIF
 gbif.shp <- readOGR(dsn = 'Shapefiles/Observations', layer = 'GBIF_061616_proj', verbose = TRUE)
@@ -290,7 +325,7 @@ gbif$month <- as.character(gbif$month) # sloppy but will be compatible with othe
 gbif$source2 <- gbif$instttC
 
 ## combine all into DF
-all_obs <- bind_rows(no_gbif, gbif)
+all_obs <- bind_rows(no_gbif, gbif) #unequal factor levels error is OK
 
 ## now check for duplicates
 dups <- duplicated(all_obs[ , c('utm_e', 'utm_n')]) # Finds duplicates in utms
@@ -324,15 +359,15 @@ final_obs <- all_obs_sp[aoi_utm,]
 plot(final_obs)
 plot(aoi_utm, add = TRUE)
 
-writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_062316', driver='ESRI Shapefile') 
-write.csv(final_obs, 'Spreadsheets/all_obs_final_062316.csv') 
+writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_080116', driver='ESRI Shapefile') 
+write.csv(final_obs, 'Spreadsheets/all_obs_final_08016.csv') 
 
 ########################################
 
 ## summarize observations
 
 ##  by source
-table(final_obs$source) ## primary source (CDFW, CROS, GBIF, MISC, NRIS, PF, YOCOM)
+table(final_obs$source) ## primary source (CDFW, CROS, GBIF, MISC, NRIS, PF, YOCOM, WJZ05)
 table(final_obs$source2) ## secondary source within ERDO (iNaturalist, Flickr, etc.)
 table(final_obs$instttC) ## institution codes within GBIF (CAS, MVZ, etc.)
 
@@ -342,7 +377,7 @@ table(final_obs$type_new) ## general
 
 ## matrix (source and type)
 matrix <- table(final_obs$type_new, final_obs$source)
-write.csv(matrix, 'Spreadsheets/source_type_matrix_062316.csv')
+write.csv(matrix, 'Spreadsheets/source_type_matrix_080116.csv')
 
 ## by county
 counties <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_counties_AOI', verbose = TRUE)
@@ -359,7 +394,7 @@ font_import(pattern = '[A/a]rial')
 font_import(pattern = '[T/t]imes')
 loadfonts(device = 'win')
 
-ggplot(final_obs_df, aes(decade, fill = decade)) + geom_bar() + 
+ggplot(final_obs_df, aes(decade, fill = decade)) + geom_bar(colour = 'black') + 
       labs(x = 'Decade', y = 'Number of records') +
       scale_fill_manual(values = cols) +
       theme(axis.text = element_text(size = 12, colour = 'black', family = 'Arial'),
@@ -370,8 +405,7 @@ ggplot(final_obs_df, aes(decade, fill = decade)) + geom_bar() +
             axis.ticks = element_line(size = 0.5, colour = 'black'),
             axis.ticks.length = unit(.2, 'cm'),
             panel.background = element_rect(fill = 'white'),
-            scale_y_continuous(breaks = c(0, 25, 50, 75, 100, 125, 150)),
             legend.position = 'none')
 
-
+## couldn't get to work in ggplot: scale_y_continuous(breaks = c(0, 25, 50, 75, 100, 125, 150)),
   
