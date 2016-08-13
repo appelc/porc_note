@@ -1,5 +1,6 @@
 
-## Import Porcufinder records from Google Drive
+## Import records from Google Drive: Porcufinder, Zielinski track plates, Misc, CDFW, ERDO
+## Combine with Yocom and GBIF records
 
 library(googlesheets)
 library(rgdal) 
@@ -24,7 +25,7 @@ pf$date <- as.Date(pf$posix, '%Y-%m-%d', tz = 'America/Los_Angeles')
 pf$year <- year(pf$date)
 
 ## keep only credibility 2 (reliable description) or 3 (photos/video)
-table(pf$credibility) ## check first for reporting
+table(pf$credibility) ## check first to report how many are in each
 pf <- pf[pf$credibility == '2' | pf$credibility == '3',] 
 
 ## clean up a little bit
@@ -54,12 +55,12 @@ pf <- pf[,c('source', 'id', 'type', 'date', 'year', 'decade', 'location', 'obser
 #                               proj4string=CRS("+proj=utm +zone=10 +datum=NAD83"))
 #plot(pf.spdf)
 
-## keep only those in AOI
+## keep only those in AOI -- DO THIS AT THE END NOW
 #aoi <- readOGR(dsn = 'Shapefiles/Admin', layer = 'ca_AOI2', verbose = TRUE)
 #aoi_utm <- spTransform(aoi, CRS('+proj=utm +zone=10 +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0'))
 #pf.spdf <- pf.spdf[aoi_utm,]
 
-#writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_061616', driver='ESRI Shapefile') 
+#writeOGR(pf.spdf, dsn = '.', layer='Shapefiles/Observations/PF_cleaned_081316', driver='ESRI Shapefile') 
 #write.csv(pf.spdf@data, 'Spreadsheets/PF_cleaned_061616.csv') 
 
 #######################################################
@@ -219,7 +220,7 @@ erdo <- erdo[,c('source', 'id', 'type', 'date', 'decade', 'location', 'observer'
 
 #######################################################
 
-## CDFW records from Richard Callas / Kathryn Purcell
+## CDFW records from Richard Callas / Kathryn Purcell / Pete Figura
 
 cdfw.shp <- readOGR(dsn = 'Shapefiles/Observations/Originals', layer='CDFW_KP', verbose=TRUE)
 plot(cdfw.shp)
@@ -359,8 +360,8 @@ final_obs <- all_obs_sp[aoi_utm,]
 plot(final_obs)
 plot(aoi_utm, add = TRUE)
 
-writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_080116', driver='ESRI Shapefile') 
-write.csv(final_obs, 'Spreadsheets/all_obs_final_08016.csv') 
+writeOGR(final_obs, dsn = '.', layer='Shapefiles/Observations/all_obs_final_080216', driver='ESRI Shapefile') 
+write.csv(final_obs, 'Spreadsheets/all_obs_final_080216.csv') 
 
 ########################################
 
